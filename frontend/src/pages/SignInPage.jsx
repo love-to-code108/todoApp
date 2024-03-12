@@ -69,14 +69,14 @@ export const SignInPage = () => {
 
                 {/* SUBMIT BUTTON */}
                 <div className=" w-[100%] flex justify-end">
-                    <Button>Sign Up</Button>
+                    <Button>Sign In</Button>
                 </div>
 
 
 
                 {/* IF YOU ALREADY HAVE AN ACCOUNT SIGN UP  */}
                 <div className=" relative bottom-[2rem] left-1">
-                    <p className=" color-grey text-[12px]">If you dont have an account <Link className=" text-black font-semibold ml-[1px]">Sign Up</Link></p>
+                    <p className=" color-grey text-[12px]">Dont have an account <Link className=" text-black font-semibold ml-[1px]">Sign Up</Link></p>
                 </div>
 
             </div>
