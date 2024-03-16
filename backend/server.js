@@ -1,11 +1,19 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 
-
+// FOR JSON PARSING
+app.use(express.json());
 
 
 app.get("/" , (req,res) => {
-    res.send("<h1>Hello world</h1>")
+    res.send("<h1>Hello world</h1>");
 } )
+
+
+app.post("/signup" , async(req,res) => {
+    await console.log(req.body);
+    res.sendStatus(404);
+})
 
 
 
