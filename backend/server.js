@@ -14,9 +14,9 @@ app.get("/" , (req,res) => {
 } )
 
 
-app.post("/signup" , async(req,res) => {
-    await console.log(req.body);
-    res.sendStatus(404);
+app.post("/signup" , (req,res) => {
+    console.log(req.body);
+    res.sendStatus(200);
 })
 
 
