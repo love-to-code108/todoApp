@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const User = require('./DB/userModel')
 
 // CONNECTION TO DATABASE
-mongoose.connect('mongodb+srv://lovetocode108:chetanyamatman108@todoapp.utheg5k.mongodb.net/',)
+mongoose.connect('mongodb+srv://lovetocode108:chetanyamatman108@todoapp.utheg5k.mongodb.net/todoApplicationDatabase',)
     .then(() => console.log("Database Connected"))
     .catch((e) => console.log("Error Database not connected", e));
 
