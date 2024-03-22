@@ -18,8 +18,6 @@ export const connectingToDatabase = (req, res, next) => {
       next();
     })
 
-  // next();
-
 }
 
 

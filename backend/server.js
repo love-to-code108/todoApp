@@ -3,7 +3,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 
 // IMPORTING THE MONGOOSE MODELS
-import user from "./DB/userModel.js"
+import user from "./Models/userModel.js"
 
 // IMPORTING THE DB CONNECTION
 import { connectingToDatabase } from './DB/dbConnection.js';
@@ -12,10 +12,7 @@ import { connectingToDatabase } from './DB/dbConnection.js';
 
 
 const app = express();
-// CONNECTION TO DATABASE
-// mongoose.connect('mongodb+srv://lovetocode108:chetanyamatman108@todoapp.utheg5k.mongodb.net/todoApplicationDatabase')
-//     .then(() => console.log("Database Connected"))
-//     .catch((e) => console.log("Error Database not connected", e));
+
 
 
    
@@ -47,8 +44,13 @@ app.get("/", (req, res) => {
 
 
 // THE SIGN UP ROUTE
-app.post("/signup",connectingToDatabase,async (req, res) => {
+app.post("/signup",connectingToDatabase,(req, res) => {
    console.log(req.body);
+
+
+
+   
+   res.sendStatus(200);
 })
 
 
