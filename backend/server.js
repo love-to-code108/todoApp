@@ -8,6 +8,9 @@ import user from "./Models/userModel.js"
 // IMPORTING THE DB CONNECTION
 import { connectingToDatabase } from './DB/dbConnection.js';
 
+// IMPORTING CHECKING FUNCTIONS
+import { userExistsOrNot_function } from './DB/userNameExistsInDBorNot.js';
+
 
 
 
@@ -15,7 +18,7 @@ const app = express();
 
 
 
-   
+
 
 
 
@@ -44,13 +47,15 @@ app.get("/", (req, res) => {
 
 
 // THE SIGN UP ROUTE
-app.post("/signup",connectingToDatabase,(req, res) => {
-   console.log(req.body);
+app.post("/signup", connectingToDatabase,async(req, res) => {
+    
+    const userName = req.body.UserName;
+    
+    const result = await userExistsOrNot_function(userName);
+    console.log(result)
 
 
-
-   
-   res.sendStatus(200);
+    res.sendStatus(200);
 })
 
 
