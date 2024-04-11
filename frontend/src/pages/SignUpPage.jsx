@@ -82,8 +82,8 @@ export const SignUpPage = () => {
 
 
                 {/* IF YOU ALREADY HAVE AN ACCOUNT SIGN IN  */}
-                <div className=" ">
-                    <p className=" color-grey text-[12px]">If you already have an account <span className=" text-black font-semibold">Sign In</span></p>
+                <div className=" relative bottom-[2rem] left-1">
+                    <p className=" color-grey text-[12px]">If you already have an account <br /><span className=" text-black font-semibold relative bottom-[2px] right-[1px]">Sign In</span></p>
                 </div>
 
             </div>
