@@ -4,6 +4,10 @@ import { SignInPage } from "./pages/SignInPage"
 import { SignUpPage } from "./pages/SignUpPage"
 
 
+// CSS
+import "./custom.css"
+
+
 function App() {
 
   return (
