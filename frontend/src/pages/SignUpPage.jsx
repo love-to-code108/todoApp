@@ -1,6 +1,9 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
+import axios from "axios"
+import { useRecoilState } from "recoil"
+import userName_atom from "../recoil/user-atom"
 
 
 
@@ -14,6 +17,30 @@ import { Link } from "react-router-dom"
 export const SignUpPage = () => {
 
 
+    const[userName,setUserName] = useRecoilState(userName_atom);
+
+    const data = {
+        UserName : userName
+    }
+   
+
+
+
+
+    // AXIOS SENDING DATA TO BACKEND
+    const sendingData = () => {
+        console.log("Request Send");
+
+        axios.post("http://localhost:4000/signup", data)
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((error) => {
+                console.log("Axios threw this error ", error);
+            })
+
+
+    }
 
 
 
@@ -53,7 +80,10 @@ export const SignUpPage = () => {
 
                 {/* USERNAME INPUT */}
                 <div className="  mb-2">
-                    <Input id="userName" type="text" placeholder="UserName" />
+                    <Input onChange={(e) => {
+                        setUserName(e.target.value);
+                        console.log(e.target.value);
+                    }} id="userName" type="text" placeholder="UserName" />
                 </div>
 
 
@@ -77,13 +107,13 @@ export const SignUpPage = () => {
 
                 {/* SUBMIT BUTTON */}
                 <div className=" w-[100%] flex justify-end">
-                    <Button>Sign Up</Button>
+                    <Button onClick={sendingData}>Sign Up</Button>
                 </div>
 
 
 
                 {/* IF YOU ALREADY HAVE AN ACCOUNT SIGN IN  */}
-                <div className=" relative bottom-[2rem] left-1">
+                <div className=" relative bottom-[2rem] left-1 pointer-events-none">
                     <p className=" color-grey text-[12px]">If you already have an account <br /><Link className=" text-black font-semibold relative bottom-[2px] right-[1px]" to="/signin">Sign In</Link></p>
                 </div>
 
