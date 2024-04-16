@@ -1,10 +1,11 @@
+import { Button } from "@/components/ui/button"
 
 
 function App() {
 
   return (
     <div>
-      Hello world
+      <Button> If this button is black then chadcn ui has been integrated </Button>
     </div>
   )
 }
