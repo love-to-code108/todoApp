@@ -1,11 +1,18 @@
-import { Button } from "@/components/ui/button"
+import { Route, Routes } from "react-router-dom"
+import { LandingPage } from "./pages/LandingPage"
+import { SignInPage } from "./pages/SignInPage"
+import { SignUpPage } from "./pages/SignUpPage"
 
 
 function App() {
 
   return (
     <div>
-      <Button> If this button is black then chadcn ui has been integrated </Button>
+      <Routes>
+        <Route path="/" element={<LandingPage/>}></Route>
+        <Route path="/signin" element={<SignInPage/>}></Route>
+        <Route path="/signup" element={<SignUpPage/>}></Route>
+      </Routes>
     </div>
   )
 }
