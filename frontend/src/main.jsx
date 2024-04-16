@@ -14,3 +14,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </RecoilRoot>
   </React.StrictMode>,
 )
+
+//mongodb+srv://lovetocode108:<password>@cluster0.lfwk6rq.mongodb.net/
