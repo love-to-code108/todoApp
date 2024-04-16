@@ -1,11 +1,14 @@
 import { Button } from "@/components/ui/button"
+import { Route, Routes } from "react-router-dom"
 
 
 function App() {
 
   return (
     <div>
-      <Button> If this button is black then chadcn ui has been integrated </Button>
+      <Routes>
+        <Route path="/" ele></Route>
+      </Routes>
     </div>
   )
 }
