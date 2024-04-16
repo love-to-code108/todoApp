@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Link } from "react-router-dom"
 
 
 
@@ -43,7 +44,7 @@ export const SignUpPage = () => {
 
 
                 {/* SIGN UP HEADING */}
-                <div className=" mb-6 ml-2"> 
+                <div className=" mb-6 ml-2">
                     <h1 className=" font-inter text-5xl font-semibold">Sign Up</h1>
                 </div>
 
@@ -69,21 +70,21 @@ export const SignUpPage = () => {
 
                 {/* EMAIL INPUT */}
                 <div className=" mb-4">
-                    <Input type="email" placeholder="Email" className=" color-grey"/>
+                    <Input type="email" placeholder="Email" className=" color-grey" />
 
                 </div>
 
 
                 {/* SUBMIT BUTTON */}
-                <div className=" w-[100%] flex justify-end"> 
+                <div className=" w-[100%] flex justify-end">
                     <Button>Sign Up</Button>
                 </div>
 
 
 
                 {/* IF YOU ALREADY HAVE AN ACCOUNT SIGN IN  */}
-                <div className=" ">
-                    <p className=" color-grey text-[12px]">If you already have an account <span className=" text-black font-semibold">Sign In</span></p>
+                <div className=" relative bottom-[2rem] left-1">
+                    <p className=" color-grey text-[12px]">If you already have an account <br /><Link className=" text-black font-semibold relative bottom-[2px] right-[1px]">Sign In</Link></p>
                 </div>
 
             </div>
