@@ -15,8 +15,6 @@ import userName_atom from "../recoil/user-atom"
 
 
 export const SignUpPage = () => {
-
-
     const[userName,setUserName] = useRecoilState(userName_atom);
 
     const data = {

@@ -10,13 +10,7 @@ mongoose.connect('mongodb+srv://lovetocode108:chetanyamatman108@todoapp.utheg5k.
     .catch((e) => console.log("Error Database not connected", e));
 
 
-    const newUser = User({
-        UserName : 'love.to.code108',
-        Password : 'password',
-    })
-
-    newUser.save()
-    .then(() => console.log(newUser));
+   
 
 
 
