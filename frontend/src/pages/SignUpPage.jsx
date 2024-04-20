@@ -1,13 +1,24 @@
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Link } from "react-router-dom"
-import axios from "axios"
-import { useRecoilState } from "recoil"
-import { userEmail_atom, userName_atom, userPassword_atom } from "../recoil/user-atom.js"
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useRecoilState } from "recoil";
+import { userEmail_atom, userName_atom, userPassword_atom } from "../recoil/user-atom.js";
 
 // LOADING ENCRYPTION DECRYPTION FUNCTION 
-import { encryptObject } from "../security/encryption.js"
-import { decryptObject } from "../security/decryption.js"
+import { encryptObject } from "../security/encryption.js";
+import { decryptObject } from "../security/decryption.js";
+
+// CHADCN UI TOAST
+import { useToast } from "@/components/ui/use-toast";
+
+
+// EMAIL VALIDATOR
+import validator from "email-validator";
+
+// REACT ROUTER DOM
+import { useNavigate } from "react-router-dom";
+
 
 
 
@@ -23,12 +34,19 @@ import { decryptObject } from "../security/decryption.js"
 
 // REACT COMPONENT
 export const SignUpPage = () => {
-
-
     
-
+    
+    
+    
     const secretKey = import.meta.env.VITE_SECRET_KEY;
     
+    
+    // TOAST
+    const { toast } = useToast()
+    
+    // USE NAVIGATE HOOK
+    const navigate = useNavigate();
+
 
     // IMPORTING ALL THE ATOMS HERE
     const [userName, setUserName] = useRecoilState(userName_atom);
@@ -45,25 +63,102 @@ export const SignUpPage = () => {
     }
 
 
-    const encryptedData = encryptObject( data , secretKey);
+    const encryptedData = encryptObject(data, secretKey);
     const encryptedDataObject = {
-        value : encryptedData
+        value: encryptedData
     }
 
 
 
 
     // AXIOS SENDING DATA TO BACKEND
-    const sendingData = () => {
-        console.log("Request Send");
+    const sendingData = async () => {
+        // console.log("Request Send");
+
+
+
+        if (!userName) {
+            toast({
+                title: "User Name cant be Blank",
+            })
+
+            return;
+        }
+
+
+
+
+        if (!password) {
+            toast({
+                title: "Password cant be Blank",
+            })
+            return;
+        }
+
+
+
+
+        if (!email) {
+            toast({
+                title: "Email cant be Blank",
+            })
+            return;
+        } else if (email) {
+
+
+
+            if (!validator.validate(email)) {
+                toast({
+                    title: "Enter a Valid Email Please",
+                });
+
+                return;
+            }
+
+        }
+
+
+
+
+
+
 
         axios.post("http://localhost:4000/signup", encryptedDataObject)
             .then((res) => {
                 console.log(res.data);
+
+
+
+                // SHOWING TOASTS AS PER THE ACTIONS TAKEN BY THE USER
+                if (res.data === "User Name already taken") {
+                    toast({
+                        title: res.data,
+                        description: "Please try again with a different User Name",
+                    });
+
+                } else if (res.data === "Email already used try with a different email") {
+                    toast({
+                        title: res.data,
+                        description: "Please try again with a different Email",
+                    });
+
+                } else if (res.data === "New User Created") {
+                    toast({
+                        title: res.data,
+                        description: "Congratulations Your account has been Sucessfully Created",
+                    });
+
+                    navigate('/signin');
+                }
+
+
+
             })
             .catch((error) => {
                 console.log("Axios threw this error ", error);
             })
+
+
 
 
     }
@@ -158,3 +253,7 @@ export const SignUpPage = () => {
         </div>
     )
 }
+
+
+
+

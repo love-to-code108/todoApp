@@ -108,7 +108,6 @@ app.post("/signup", connectingToDatabase, async (req, res) => {
 
     if (newUserStatus) {
         res.send("New User Created");
-        res.sendStatus(200);
         return;
     }
 })

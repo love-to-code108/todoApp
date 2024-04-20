@@ -4,12 +4,15 @@ import App from './App.jsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { RecoilRoot } from 'recoil'
+import { Toaster } from "@/components/ui/toaster"
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RecoilRoot>
       <BrowserRouter>
         <App />
+        <Toaster className=" font-inter text-black" />
       </BrowserRouter>
     </RecoilRoot>
   </React.StrictMode>,

@@ -20,5 +20,5 @@ export const createNewUser = async(user) => {
     .catch((e) => console.log("Error from creating new User Section",e))
     
     
-    return true;
+    return newUser;
 }
