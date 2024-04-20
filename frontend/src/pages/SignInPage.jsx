@@ -12,6 +12,9 @@ import { decryptObject } from "../security/decryption.js"
 // CHADCN UI TOAST
 import { useToast } from "@/components/ui/use-toast";
 
+// USE NAVIGATE
+import { useNavigate } from "react-router-dom"
+
 
 
 
@@ -30,7 +33,7 @@ export const SignInPage = () => {
     // INITIALIZING RECOIL STATES
     const [userName, setUserName] = useRecoilState(userName_atom);
     const [password, setPassword] = useRecoilState(userPassword_atom);
-    const [USER , setUSER] = useRecoilState(USER_atom);
+    const [USER, setUSER] = useRecoilState(USER_atom);
 
 
     // THE SECURE KEY
@@ -42,6 +45,22 @@ export const SignInPage = () => {
         "UserName": userName,
         "Password": password,
     }
+
+
+    // FOR PROGRAMMABLE PAGE NAVIGATION
+    const navigate = useNavigate();
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     // SENDING DATA TO THE BACKEND
@@ -63,39 +82,44 @@ export const SignInPage = () => {
 
 
                 // IF EMAIL OR USERNAME DOES NOT EXIST
-                if(res.data == "UserName , Email does not exist"){
+                if (res.data == "UserName , Email does not exist") {
                     toast({
                         title: res.data,
                     })
                 }
 
                 // IF THE PASSWORD IS WRONG
-                else if(res.data == "Wrong Password"){
+                else if (res.data == "Wrong Password") {
                     toast({
-                        title:res.data,
+                        title: res.data,
                     })
                 }
 
 
                 // IF THE USERNAME AND PASSWORD IS RIGHT
-                else{
-                    
+                else {
+
                     toast({
-                        title : "You Have sucessfully Signed In"
+                        title: "You Have sucessfully Signed In"
                     })
 
 
                     // DECRYPTING THE INCOMMING DATA
-                    const decryptedUserObject = decryptObject(res.data.value , secureKey);
+                    const decryptedUserObject = decryptObject(res.data.value, secureKey);
 
 
                     // SETTING THE GLOBAL USER STATE TO THIS OBJECT
                     setUSER(decryptedUserObject);
 
+
+                    localStorage.setItem("Cookie", decryptedUserObject.Cookie);
+
+                    navigate('/loading');
+                    return;
                 }
             })
             .catch((e) => {
-                console.log("This error was generated in the signin page from where we are sending data to the backend",e);
+                console.log("This error was generated in the signin page from where we are sending data to the backend", e);
             })
 
     }

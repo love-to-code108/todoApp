@@ -4,6 +4,6 @@ export const cookieGenerator = () => {
 
     const randomBytes = crypto.randomBytes(8);
     const hexString = randomBytes.toString('hex');
-    return hexString.padStart(16, '0');
+    return hexString.padStart(32, '0');
 
 }

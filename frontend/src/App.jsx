@@ -7,6 +7,7 @@ import { SignUpPage } from "./pages/SignUpPage"
 // CSS
 import "./custom.css"
 import { PageNotFound } from "./pages/PageNotFound"
+import { LoadingPage } from "./pages/LoadingPage"
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/signin" element={<SignInPage/>}></Route>
         <Route path="/signup" element={<SignUpPage/>}></Route>
         <Route path="*" element={<PageNotFound/>}></Route>
+        {/* <Route path="/loading" element={<LoadingPage/>}></Route> */}
       </Routes>
     </div>
   )
