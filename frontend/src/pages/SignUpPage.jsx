@@ -34,16 +34,16 @@ import { useNavigate } from "react-router-dom";
 
 // REACT COMPONENT
 export const SignUpPage = () => {
-    
-    
-    
-    
+
+
+
+    // THE SECRET KEY
     const secretKey = import.meta.env.VITE_SECRET_KEY;
-    
-    
+
+
     // TOAST
     const { toast } = useToast()
-    
+
     // USE NAVIGATE HOOK
     const navigate = useNavigate();
 
@@ -55,14 +55,14 @@ export const SignUpPage = () => {
 
 
 
-
+    // THE DATA THAT WILL BE SIND TO THE BACKEND AFTER BEING ENCRYPTED
     const data = {
         UserName: userName,
         Password: password,
         Email: email,
     }
 
-
+    // ENCRYPTING THE DATA WHENEVER THERE IS A RERENDER VERY BAD PRACTICE
     const encryptedData = encryptObject(data, secretKey);
     const encryptedDataObject = {
         value: encryptedData
@@ -203,7 +203,7 @@ export const SignUpPage = () => {
                 <div className="  mb-2">
                     <Input onChange={(e) => {
                         setUserName(e.target.value);
-                        console.log(e.target.value);
+                        // console.log(e.target.value);
                     }} id="userName" type="text" placeholder="UserName" />
                 </div>
 
@@ -214,7 +214,7 @@ export const SignUpPage = () => {
                 <div className=" mb-2">
                     <Input onChange={(e) => {
                         setPassword(e.target.value);
-                        console.log(e.target.value);
+                        // console.log(e.target.value);
                     }}
                         type="password" placeholder="Password" />
 
@@ -228,7 +228,7 @@ export const SignUpPage = () => {
                     <Input
                         onChange={(e) => {
                             setEmail(e.target.value);
-                            console.log(e.target.value);
+                            // console.log(e.target.value);
                         }}
                         type="email" placeholder="Email" className=" color-grey" />
 

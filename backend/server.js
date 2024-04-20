@@ -120,7 +120,10 @@ app.post("/signup", connectingToDatabase, async (req, res) => {
 
 
 
-
+// THE SIGN IN ROUTE
+app.post('/signin',(req,res) => {
+    console.log(req.body.value)
+})
 
 
 

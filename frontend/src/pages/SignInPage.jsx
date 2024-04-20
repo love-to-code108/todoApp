@@ -1,6 +1,10 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
+import { useRecoilState } from "recoil"
+import { userName_atom, userPassword_atom } from "../recoil/user-atom"
+import axios from "axios"
+import { encryptObject } from "../security/encryption.js"
 
 
 
@@ -14,12 +18,41 @@ import { Link } from "react-router-dom"
 export const SignInPage = () => {
 
 
+    // INITIALIZING RECOIL STATES
+    const [userName, setUserName] = useRecoilState(userName_atom);
+    const [password, setPassword] = useRecoilState(userPassword_atom);
 
 
+    // THE SECURE KEY
+    const secureKey = import.meta.env.VITE_SECRET_KEY;
 
 
+    // THE DATA TO BE SEND TO THE BACKEND
+    const signInUserData = {
+        "UserName": userName,
+        "password": password,
+    }
 
 
+    // SENDING DATA TO THE BACKEND
+    const sendingData = async () => {
+
+
+        // ENCRYPTING THE DATA TO BE SEND
+        const encryptedData = encryptObject(signInUserData , secureKey);
+
+        const finalBackendData = {
+            value : encryptedData,
+        }
+
+
+        // AXIOS SENDING DATA TO THE BACKEND URL
+        axios.post("http://localhost:4000/signin",finalBackendData)
+            .then((res) => {
+
+            })
+
+    }
 
 
 
@@ -53,7 +86,10 @@ export const SignInPage = () => {
 
                 {/* USERNAME INPUT */}
                 <div className="  mb-2">
-                    <Input id="userName" type="text" placeholder="UserName" />
+                    <Input onChange={(e) => {
+                        setUserName(e.target.value);
+                    }}
+                        id="userName" type="text" placeholder="UserName" />
                 </div>
 
 
@@ -61,7 +97,10 @@ export const SignInPage = () => {
 
                 {/* PASSWORD INPUT */}
                 <div className=" mb-4">
-                    <Input type="password" placeholder="Password" />
+                    <Input onChange={(e) => {
+                        setPassword(e.target.value);
+                    }}
+                        type="password" placeholder="Password" />
 
                 </div>
 
@@ -69,7 +108,8 @@ export const SignInPage = () => {
 
                 {/* SUBMIT BUTTON */}
                 <div className=" w-[100%] flex justify-end">
-                    <Button>Sign In</Button>
+                    <Button onClick={sendingData}
+                    >Sign In</Button>
                 </div>
 
 
