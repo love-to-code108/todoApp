@@ -3,9 +3,15 @@ import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
 import axios from "axios"
 import { useRecoilState } from "recoil"
-import { userEmail_atom, userName_atom ,  userPassword_atom }  from "../recoil/user-atom.js"
+import { userEmail_atom, userName_atom, userPassword_atom } from "../recoil/user-atom.js"
 
-// LOADING ENCRYPTION FUNCTION 
+// LOADING ENCRYPTION DECRYPTION FUNCTION 
+import { encryptObject } from "../security/encryption.js"
+import { decryptObject } from "../security/decryption.js"
+
+
+
+
 
 
 
@@ -19,23 +25,57 @@ import { userEmail_atom, userName_atom ,  userPassword_atom }  from "../recoil/u
 export const SignUpPage = () => {
 
 
+    // TESTING OUT ENCRYPTION AND DECRYPTION
+    const message = {
+        userName: 'love-to-code108',
+        password: 'sex'
+    }
+
+    const secretKey = import.meta.env.VITE_SECRET_KEY;
+    console.log(secretKey);
+
+    const encryptedMessage = encryptObject(message , secretKey);
+    console.log(encryptedMessage);
+
+
+    const decryptedMessage = decryptObject(encryptedMessage , secretKey);
+    console.log(decryptedMessage);
+
     
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // IMPORTING ALL THE ATOMS HERE
-    const[userName , setUserName ] = useRecoilState(userName_atom);
-    const[email , setEmail] = useRecoilState(userEmail_atom);
-    const[password , setPassword] = useRecoilState(userPassword_atom);
+    const [userName, setUserName] = useRecoilState(userName_atom);
+    const [email, setEmail] = useRecoilState(userEmail_atom);
+    const [password, setPassword] = useRecoilState(userPassword_atom);
 
 
 
 
     const data = {
-        UserName : userName ,
-        Password : password,
-        email :  email,
+        UserName: userName,
+        Password: password,
+        email: email,
     }
 
 
-   
+
 
 
 
@@ -108,7 +148,7 @@ export const SignUpPage = () => {
                         setPassword(e.target.value);
                         console.log(e.target.value);
                     }}
-                     type="password" placeholder="Password" />
+                        type="password" placeholder="Password" />
 
                 </div>
 
@@ -118,11 +158,11 @@ export const SignUpPage = () => {
                 {/* EMAIL INPUT */}
                 <div className=" mb-4">
                     <Input
-                    onChange={(e) => {
-                        setEmail(e.target.value);
-                        console.log(e.target.value);
-                    }}
-                    type="email" placeholder="Email" className=" color-grey" />
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                            console.log(e.target.value);
+                        }}
+                        type="email" placeholder="Email" className=" color-grey" />
 
                 </div>
 
