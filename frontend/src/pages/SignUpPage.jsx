@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
 import axios from "axios"
 import { useRecoilState } from "recoil"
-import userName_atom from "../recoil/user-atom"
+import { userEmail_atom, userName_atom ,  userPassword_atom }  from "../recoil/user-atom.js"
 
 
 
@@ -13,12 +13,23 @@ import userName_atom from "../recoil/user-atom"
 
 
 
-
+// REACT COMPONENT
 export const SignUpPage = () => {
-    const[userName,setUserName] = useRecoilState(userName_atom);
+
+
+    
+    // IMPORTING ALL THE ATOMS HERE
+    const[userName , setUserName ] = useRecoilState(userName_atom);
+    const[email , setEmail] = useRecoilState(userEmail_atom);
+    const[password , setPassword] = useRecoilState(userPassword_atom);
+
+
+
 
     const data = {
-        UserName : userName
+        UserName : userName ,
+        Password : password,
+        email :  email,
     }
    
 
@@ -89,7 +100,11 @@ export const SignUpPage = () => {
 
                 {/* PASSWORD INPUT */}
                 <div className=" mb-2">
-                    <Input type="password" placeholder="Password" />
+                    <Input onChange={(e) => {
+                        setPassword(e.target.value);
+                        console.log(e.target.value);
+                    }}
+                     type="password" placeholder="Password" />
 
                 </div>
 
@@ -98,7 +113,12 @@ export const SignUpPage = () => {
 
                 {/* EMAIL INPUT */}
                 <div className=" mb-4">
-                    <Input type="email" placeholder="Email" className=" color-grey" />
+                    <Input
+                    onChange={(e) => {
+                        setEmail(e.target.value);
+                        console.log(e.target.value);
+                    }}
+                    type="email" placeholder="Email" className=" color-grey" />
 
                 </div>
 
