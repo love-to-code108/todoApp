@@ -20,6 +20,7 @@ import { decryptObject } from './security/decryption.js';
 import dotenv from "dotenv";
 import { createNewUser } from './DB/createNewUser.js';
 import { encryptObject } from './security/encryption.js';
+import { cookieGenerator } from './security/cookieGeneratior.js';
 dotenv.config();
 
 
@@ -158,6 +159,14 @@ app.post('/signin', connectingToDatabase, async (req, res) => {
 
     // IF EMAIL / USERNAME MATCHES
     if (decryptedData.Password === User.Password) {
+
+        // GENERATING A RANDOM COOKIE
+        const randomCookie = cookieGenerator();
+        User.Cookie = randomCookie;
+        User.save();
+
+
+
 
 
 
