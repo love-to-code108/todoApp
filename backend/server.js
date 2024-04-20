@@ -18,6 +18,7 @@ import { decryptObject } from './security/decryption.js';
 
 // IMPORTING DOT ENV
 import dotenv from "dotenv";
+import { createNewUser } from './DB/createNewUser.js';
 dotenv.config();
 
 
@@ -75,15 +76,15 @@ app.post("/signup", connectingToDatabase, async (req, res) => {
 
 
 
-
     // SEARCHING IF THE USERNAME EXISTS OR NOT
-    const userNameFound = await userNameExisting_fun(req.body.UserName);
+    const userNameFound = await userNameExisting_fun(decryptedData.UserName);
     // console.log(userFound);
 
 
 
     // IF THE USER NAME IF FOUND WE SEND THIS MESSAGE
     if (userNameFound) {
+        // res.sendStatus(400)
         res.send("User Name already taken");
         return;
     }
@@ -91,18 +92,25 @@ app.post("/signup", connectingToDatabase, async (req, res) => {
 
 
     // SEARCHING IF THE EMAIL EXISTS OR NOT
-    const userEmailFound = await userEmailExisting_fun(req.body.Email);
+    const userEmailFound = await userEmailExisting_fun(decryptedData.Email);
 
 
     // IF THE EMAIL MATCHES
     if (userEmailFound) {
+        // res.sendStatus(400)
         res.send("Email already used try with a different email");
         return;
     }
 
 
-    // 
+    // CREATING A NEW USER
+    const newUserStatus = await createNewUser(decryptedData);
 
+    if (newUserStatus) {
+        res.send("New User Created");
+        res.sendStatus(200);
+        return;
+    }
 })
 
 
