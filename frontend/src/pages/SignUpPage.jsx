@@ -5,6 +5,8 @@ import axios from "axios"
 import { useRecoilState } from "recoil"
 import { userEmail_atom, userName_atom ,  userPassword_atom }  from "../recoil/user-atom.js"
 
+// LOADING ENCRYPTION FUNCTION 
+
 
 
 
@@ -31,6 +33,8 @@ export const SignUpPage = () => {
         Password : password,
         email :  email,
     }
+
+
    
 
 
