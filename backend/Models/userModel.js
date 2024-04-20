@@ -1,9 +1,26 @@
 import mongoose from "mongoose";
 
-const UserSchema = new mongoose.Schema({
-    UserName : String ,
-    Password : String,
-    email : String
+
+
+const todoFileSchema = new mongoose.Schema({
+    fileName: String,
+    todos: {
+        type: [{
+            todo: String,
+            Status: Boolean,
+        }]
+    }
+
 })
 
-export default mongoose.model('user' , UserSchema);
+const UserSchema = new mongoose.Schema({
+    UserName: String,
+    Password: String,
+    Email: String,
+    Cookie: String,
+    todoFiles: {
+        type: [todoFileSchema],
+    },
+})
+
+export default mongoose.model('user', UserSchema);

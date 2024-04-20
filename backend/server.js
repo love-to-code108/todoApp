@@ -9,8 +9,19 @@ import user from "./Models/userModel.js"
 import { connectingToDatabase } from './DB/dbConnection.js';
 
 // IMPORTING CHECKING FUNCTIONS
-import { userExistsOrNot_function } from './DB/userNameExistsInDBorNot.js';
+import { userNameExisting_fun } from './DB/userNameExisting.js';
+import { userEmailExisting_fun } from './DB/userEmailExisting.js';
 
+
+// IMPORTING ENCRYPTION AND DECRYPTION
+import { decryptObject } from './security/decryption.js';
+
+// IMPORTING DOT ENV
+import dotenv from "dotenv";
+import { createNewUser } from './DB/createNewUser.js';
+import { encryptObject } from './security/encryption.js';
+import { cookieGenerator } from './security/cookieGeneratior.js';
+dotenv.config();
 
 
 
@@ -46,17 +57,168 @@ app.get("/", (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 // THE SIGN UP ROUTE
-app.post("/signup", connectingToDatabase,async(req, res) => {
-    
-    const userName = req.body.UserName;
-    
-    const result = await userExistsOrNot_function(userName);
-    console.log(result)
+app.post("/signup", connectingToDatabase, async (req, res) => {
+
+    // DECRYPTING THE DATA RECEIVED FROM THE FRONTEND
+    const decryptedData = decryptObject(req.body.value, process.env.SECRET_KEY);
 
 
-    res.sendStatus(200);
+
+
+
+    // SEARCHING IF THE USERNAME EXISTS OR NOT
+    const userNameFound = await userNameExisting_fun(decryptedData.UserName);
+    // console.log(userFound);
+
+
+
+    // IF THE USER NAME IF FOUND WE SEND THIS MESSAGE
+    if (userNameFound) {
+        // res.sendStatus(400)
+        res.send("User Name already taken");
+        return;
+    }
+
+
+
+    // SEARCHING IF THE EMAIL EXISTS OR NOT
+    const userEmailFound = await userEmailExisting_fun(decryptedData.Email);
+
+
+    // IF THE EMAIL MATCHES
+    if (userEmailFound) {
+        // res.sendStatus(400)
+        res.send("Email already used try with a different email");
+        return;
+    }
+
+
+    // CREATING A NEW USER
+    const newUserStatus = await createNewUser(decryptedData);
+
+    if (newUserStatus) {
+        res.send("New User Created");
+        return;
+    }
 })
+
+
+
+
+
+
+
+
+
+// THE SIGN IN ROUTE
+app.post('/signin', connectingToDatabase, async (req, res) => {
+
+
+    // DECRYPTING THE DATA 
+    const decryptedData = decryptObject(req.body.value, process.env.SECRET_KEY);
+
+
+    // console.log(decryptedData);
+
+
+    // CHECKFOR ANY EXISTING USERNAME
+    const userName = await userNameExisting_fun(decryptedData.UserName);
+
+    let userEmail = null;
+    let User = null;
+
+    if (!userName) {
+        userEmail = await userEmailExisting_fun(decryptedData.UserName);
+        User = userEmail;
+    }
+
+
+    User = userName;
+
+    // NO USER NAME / EMAIL
+    if (!User) {
+        res.send("UserName , Email does not exist");
+        return;
+    }
+
+
+
+
+
+    // IF EMAIL / USERNAME MATCHES
+    if (decryptedData.Password === User.Password) {
+
+        // GENERATING A RANDOM COOKIE
+        const randomCookie = cookieGenerator();
+        User.Cookie = randomCookie;
+        User.save();
+
+
+
+
+
+
+        // ENCRYPTING THE USER OBJECT BEFORE SENDING TO THE FRONTEND
+        const encryptedUserObject = encryptObject(User, process.env.SECRET_KEY)
+
+
+        const UserObject = {
+            "value": encryptedUserObject,
+        }
+
+        console.log(UserObject);
+
+        // SENDING THE ENCRYPTED USER OBJECT TO THE FRONTEND
+        res.send(UserObject);
+        return;
+    }
+
+    else {
+        res.send("Wrong Password");
+        return;
+    }
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

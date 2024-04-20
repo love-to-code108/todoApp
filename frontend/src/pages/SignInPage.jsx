@@ -1,6 +1,19 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
+import { useRecoilState } from "recoil"
+import { USER_atom, userName_atom, userPassword_atom } from "../recoil/user-atom"
+import axios from "axios"
+
+// ENCRYPTING AND DECRYPTING 
+import { encryptObject } from "../security/encryption.js"
+import { decryptObject } from "../security/decryption.js"
+
+// CHADCN UI TOAST
+import { useToast } from "@/components/ui/use-toast";
+
+// USE NAVIGATE
+import { useNavigate } from "react-router-dom"
 
 
 
@@ -13,6 +26,29 @@ import { Link } from "react-router-dom"
 
 export const SignInPage = () => {
 
+    // TOAST
+    const { toast } = useToast()
+
+
+    // INITIALIZING RECOIL STATES
+    const [userName, setUserName] = useRecoilState(userName_atom);
+    const [password, setPassword] = useRecoilState(userPassword_atom);
+    const [USER, setUSER] = useRecoilState(USER_atom);
+
+
+    // THE SECURE KEY
+    const secureKey = import.meta.env.VITE_SECRET_KEY;
+
+
+    // THE DATA TO BE SEND TO THE BACKEND
+    const signInUserData = {
+        "UserName": userName,
+        "Password": password,
+    }
+
+
+    // FOR PROGRAMMABLE PAGE NAVIGATION
+    const navigate = useNavigate();
 
 
 
@@ -20,6 +56,73 @@ export const SignInPage = () => {
 
 
 
+
+
+
+
+
+
+
+    // SENDING DATA TO THE BACKEND
+    const sendingData = async () => {
+
+
+        // ENCRYPTING THE DATA TO BE SEND
+        const encryptedData = encryptObject(signInUserData, secureKey);
+
+        const finalBackendData = {
+            value: encryptedData,
+        }
+
+
+        // AXIOS SENDING DATA TO THE BACKEND URL
+        axios.post("http://192.168.214.216:4000/signin", finalBackendData)
+            .then((res) => {
+
+
+
+                // IF EMAIL OR USERNAME DOES NOT EXIST
+                if (res.data == "UserName , Email does not exist") {
+                    toast({
+                        title: res.data,
+                    })
+                }
+
+                // IF THE PASSWORD IS WRONG
+                else if (res.data == "Wrong Password") {
+                    toast({
+                        title: res.data,
+                    })
+                }
+
+
+                // IF THE USERNAME AND PASSWORD IS RIGHT
+                else {
+
+                    toast({
+                        title: "You Have sucessfully Signed In"
+                    })
+
+
+                    // DECRYPTING THE INCOMMING DATA
+                    const decryptedUserObject = decryptObject(res.data.value, secureKey);
+
+
+                    // SETTING THE GLOBAL USER STATE TO THIS OBJECT
+                    setUSER(decryptedUserObject);
+
+
+                    localStorage.setItem("Cookie", decryptedUserObject.Cookie);
+
+                    navigate('/main');
+                    return;
+                }
+            })
+            .catch((e) => {
+                console.log("This error was generated in the signin page from where we are sending data to the backend", e);
+            })
+
+    }
 
 
 
@@ -53,7 +156,10 @@ export const SignInPage = () => {
 
                 {/* USERNAME INPUT */}
                 <div className="  mb-2">
-                    <Input id="userName" type="text" placeholder="UserName" />
+                    <Input onChange={(e) => {
+                        setUserName(e.target.value);
+                    }}
+                        id="userName" type="text" placeholder="UserName" />
                 </div>
 
 
@@ -61,7 +167,10 @@ export const SignInPage = () => {
 
                 {/* PASSWORD INPUT */}
                 <div className=" mb-4">
-                    <Input type="password" placeholder="Password" />
+                    <Input onChange={(e) => {
+                        setPassword(e.target.value);
+                    }}
+                        type="password" placeholder="Password" />
 
                 </div>
 
@@ -69,7 +178,8 @@ export const SignInPage = () => {
 
                 {/* SUBMIT BUTTON */}
                 <div className=" w-[100%] flex justify-end">
-                    <Button>Sign In</Button>
+                    <Button onClick={sendingData}
+                    >Sign In</Button>
                 </div>
 
 
