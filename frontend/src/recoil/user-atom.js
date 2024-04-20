@@ -22,3 +22,8 @@ export const userEmail_atom = atom({
 });
 
 
+export const USER_atom = atom({
+  key: 'USER_atom',
+  default: null,
+})
+

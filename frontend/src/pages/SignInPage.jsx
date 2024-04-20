@@ -2,9 +2,15 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
 import { useRecoilState } from "recoil"
-import { userName_atom, userPassword_atom } from "../recoil/user-atom"
+import { USER_atom, userName_atom, userPassword_atom } from "../recoil/user-atom"
 import axios from "axios"
+
+// ENCRYPTING AND DECRYPTING 
 import { encryptObject } from "../security/encryption.js"
+import { decryptObject } from "../security/decryption.js"
+
+// CHADCN UI TOAST
+import { useToast } from "@/components/ui/use-toast";
 
 
 
@@ -17,10 +23,14 @@ import { encryptObject } from "../security/encryption.js"
 
 export const SignInPage = () => {
 
+    // TOAST
+    const { toast } = useToast()
+
 
     // INITIALIZING RECOIL STATES
     const [userName, setUserName] = useRecoilState(userName_atom);
     const [password, setPassword] = useRecoilState(userPassword_atom);
+    const [USER , setUSER] = useRecoilState(USER_atom);
 
 
     // THE SECURE KEY
@@ -30,7 +40,7 @@ export const SignInPage = () => {
     // THE DATA TO BE SEND TO THE BACKEND
     const signInUserData = {
         "UserName": userName,
-        "password": password,
+        "Password": password,
     }
 
 
@@ -39,17 +49,53 @@ export const SignInPage = () => {
 
 
         // ENCRYPTING THE DATA TO BE SEND
-        const encryptedData = encryptObject(signInUserData , secureKey);
+        const encryptedData = encryptObject(signInUserData, secureKey);
 
         const finalBackendData = {
-            value : encryptedData,
+            value: encryptedData,
         }
 
 
         // AXIOS SENDING DATA TO THE BACKEND URL
-        axios.post("http://localhost:4000/signin",finalBackendData)
+        axios.post("http://localhost:4000/signin", finalBackendData)
             .then((res) => {
 
+
+
+                // IF EMAIL OR USERNAME DOES NOT EXIST
+                if(res.data == "UserName , Email does not exist"){
+                    toast({
+                        title: res.data,
+                    })
+                }
+
+                // IF THE PASSWORD IS WRONG
+                else if(res.data == "Wrong Password"){
+                    toast({
+                        title:res.data,
+                    })
+                }
+
+
+                // IF THE USERNAME AND PASSWORD IS RIGHT
+                else{
+                    
+                    toast({
+                        title : "You Have sucessfully Signed In"
+                    })
+
+
+                    // DECRYPTING THE INCOMMING DATA
+                    const decryptedUserObject = decryptObject(res.data.value , secureKey);
+
+
+                    // SETTING THE GLOBAL USER STATE TO THIS OBJECT
+                    setUSER(decryptedUserObject);
+
+                }
+            })
+            .catch((e) => {
+                console.log("This error was generated in the signin page from where we are sending data to the backend",e);
             })
 
     }
