@@ -25,40 +25,10 @@ import { decryptObject } from "../security/decryption.js"
 export const SignUpPage = () => {
 
 
-    // TESTING OUT ENCRYPTION AND DECRYPTION
-    const message = {
-        userName: 'love-to-code108',
-        password: 'sex'
-    }
+    
 
     const secretKey = import.meta.env.VITE_SECRET_KEY;
-    console.log(secretKey);
-
-    const encryptedMessage = encryptObject(message , secretKey);
-    console.log(encryptedMessage);
-
-
-    const decryptedMessage = decryptObject(encryptedMessage , secretKey);
-    console.log(decryptedMessage);
-
     
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // IMPORTING ALL THE ATOMS HERE
     const [userName, setUserName] = useRecoilState(userName_atom);
@@ -71,11 +41,14 @@ export const SignUpPage = () => {
     const data = {
         UserName: userName,
         Password: password,
-        email: email,
+        Email: email,
     }
 
 
-
+    const encryptedData = encryptObject( data , secretKey);
+    const encryptedDataObject = {
+        value : encryptedData
+    }
 
 
 
@@ -84,7 +57,7 @@ export const SignUpPage = () => {
     const sendingData = () => {
         console.log("Request Send");
 
-        axios.post("http://localhost:4000/signup", data)
+        axios.post("http://localhost:4000/signup", encryptedDataObject)
             .then((res) => {
                 console.log(res.data);
             })

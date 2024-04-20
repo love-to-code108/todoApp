@@ -1,18 +1,16 @@
-import crypto from 'crypto'
+import CryptoJS from 'crypto-js';
 
 
-// Function to decrypt a message
-export function decrypt(encryptedData, key, iv, tag) {
-    const decipher = crypto.createDecipheriv('chacha20poly1305', key, iv.toString('hex'));
-    decipher.setAuthTagLength(16); // Set authentication tag length
-    decipher.setAuthTag(tag.toString('hex')); // Set the authentication tag
+
+export const decryptObject = (encryptedData, secretKey) => {
+  // Decrypt the encrypted data using AES decryption with the secret key
+  const decrypted = CryptoJS.AES.decrypt(encryptedData, secretKey);
   
-    let decryptedMessage = decipher.update(encryptedData, 'hex', 'utf8');
-    try {
-      decryptedMessage += decipher.final('utf8');
-    } catch (error) {
-      console.error('Decryption failed: Invalid authentication tag');
-      return null; // Handle decryption error (likely due to invalid tag)
-    }
-    return decryptedMessage;
-  }
+  // Convert the decrypted data to a UTF-8 string
+  const decryptedString = decrypted.toString(CryptoJS.enc.Utf8);
+  
+  // Parse the decrypted JSON string back into an object
+  const decryptedObject = JSON.parse(decryptedString);
+  
+  return decryptedObject;
+};

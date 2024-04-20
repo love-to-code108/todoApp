@@ -9,8 +9,16 @@ import user from "./Models/userModel.js"
 import { connectingToDatabase } from './DB/dbConnection.js';
 
 // IMPORTING CHECKING FUNCTIONS
-import { userExistsOrNot_function } from './DB/userNameExistsInDBorNot.js';
+import { userNameExisting_fun } from './DB/userNameExisting.js';
+import { userEmailExisting_fun } from './DB/userEmailExisting.js';
 
+
+// IMPORTING ENCRYPTION AND DECRYPTION
+import { decryptObject } from './security/decryption.js';
+
+// IMPORTING DOT ENV
+import dotenv from "dotenv";
+dotenv.config();
 
 
 
@@ -46,17 +54,94 @@ app.get("/", (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 // THE SIGN UP ROUTE
-app.post("/signup", connectingToDatabase,async(req, res) => {
-    
-    const userName = req.body.UserName;
-    
-    const result = await userExistsOrNot_function(userName);
-    console.log(result)
+app.post("/signup", connectingToDatabase, async (req, res) => {
+
+    // DECRYPTING THE DATA RECEIVED FROM THE FRONTEND
+    const decryptedData = decryptObject(req.body.value, process.env.SECRET_KEY);
 
 
-    res.sendStatus(200);
+
+
+
+
+    // SEARCHING IF THE USERNAME EXISTS OR NOT
+    const userNameFound = await userNameExisting_fun(req.body.UserName);
+    // console.log(userFound);
+
+
+
+    // IF THE USER NAME IF FOUND WE SEND THIS MESSAGE
+    if (userNameFound) {
+        res.send("User Name already taken");
+        return;
+    }
+
+
+
+    // SEARCHING IF THE EMAIL EXISTS OR NOT
+    const userEmailFound = await userEmailExisting_fun(req.body.Email);
+
+
+    // IF THE EMAIL MATCHES
+    if (userEmailFound) {
+        res.send("Email already used try with a different email");
+        return;
+    }
+
+
+    // 
+
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

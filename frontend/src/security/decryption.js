@@ -1,6 +1,7 @@
 import CryptoJS from 'crypto-js';
 
 
+
 export const decryptObject = (encryptedData, secretKey) => {
   // Decrypt the encrypted data using AES decryption with the secret key
   const decrypted = CryptoJS.AES.decrypt(encryptedData, secretKey);
