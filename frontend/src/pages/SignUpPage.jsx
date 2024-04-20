@@ -123,7 +123,7 @@ export const SignUpPage = () => {
 
 
 
-        axios.post("http://localhost:4000/signup", encryptedDataObject)
+        axios.post("http://192.168.214.216:4000/signup", encryptedDataObject)
             .then((res) => {
                 console.log(res.data);
 
