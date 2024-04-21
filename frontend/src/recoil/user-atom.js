@@ -22,8 +22,14 @@ export const userEmail_atom = atom({
 });
 
 
-export const USER_atom = atom({
-  key: 'USER_atom',
-  default: null,
+export const todoArray_atom = atom({
+  key:"todoArray_atom",
+  default:[],
+});
+
+
+export const todoInput_atom = atom({
+  key:"todoInput_atom",
+  default:'',
 })
 

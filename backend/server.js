@@ -224,6 +224,6 @@ app.post('/signin', connectingToDatabase, async (req, res) => {
 
 
 // LISTENING ON THIS SPECIFIC PORT
-app.listen(5500, () => {
-    console.log("Server started on port 5500");
+app.listen(5501, () => {
+    console.log("Server started on port 5501");
 })
