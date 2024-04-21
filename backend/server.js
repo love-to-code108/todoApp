@@ -43,7 +43,7 @@ app.use(express.json());
 
 
 // FOR CORS
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: 'http://192.168.214.216:5173' }));
 
 
 
@@ -224,6 +224,6 @@ app.post('/signin', connectingToDatabase, async (req, res) => {
 
 
 // LISTENING ON THIS SPECIFIC PORT
-app.listen(4000, () => {
-    console.log("Server started on port 4000");
+app.listen(5500, () => {
+    console.log("Server started on port 5500");
 })
