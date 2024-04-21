@@ -9,6 +9,7 @@ import { todoArray_atom, todoInput_atom } from "../recoil/user-atom"
 
 // PULLING THE USER
 import { pullUSER } from "../USER/pullingTheUserObject"
+import { updateUserObject } from "../axios/useUpdateUserObject"
 
 
 export const Main = () => {
@@ -23,13 +24,15 @@ export const Main = () => {
   const [todoInput, settodoInput] = useRecoilState(todoInput_atom);
 
 
-
-
-
-
+  
+  
+  
+  
+  
+  
   // ADDING TO DO TO THE TODO ARRAY
   const addTodo = () => {
-
+    
     console.log(todoInput);
     console.log(todoArray);
     
@@ -39,10 +42,15 @@ export const Main = () => {
       value: todoInput,
       state: false,
     }
-
+    
     console.log(todo);
     
     settodoArray([...todoArray , todo]);
+
+
+    
+    // UPDATE USER OBJECT
+    updateUserObject("Something");
   }
 
 

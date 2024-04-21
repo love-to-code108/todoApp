@@ -204,7 +204,14 @@ app.post('/signin', connectingToDatabase, async (req, res) => {
 
 
 
+// UPDATING USER DATA
+app.put("/update" ,(req,res) => {
 
+    const decryptedObject = decryptObject(req.body.value , process.env.SECRET_KEY);
+
+
+    
+})
 
 
 
