@@ -30,8 +30,9 @@ function App() {
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/signin" element={<SignInPage />}></Route>
         <Route path="/signup" element={<SignUpPage />}></Route>
-        <Route path="/main" element={ USER ? <Main /> : <SignInPage/>}></Route>
+        {/* <Route path="/main" element={ USER ? <Main /> : <SignInPage/>}></Route> */}
         <Route path="*" element={<PageNotFound />}></Route>
+        <Route path="/main" element={<Main/>}></Route>
       </Routes>
     </div>
   )
