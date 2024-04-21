@@ -3,25 +3,41 @@ import todoLogo from "../../public/SVG/toDoLogo.svg"
 import { Button } from "@/components/ui/button"
 import "../custom.css"
 
+// IMPORTING ATOMS HERE
+import { useRecoilState } from "recoil"
+import { USER_atom } from "../recoil/user-atom"
+import { completedArray_atom, uncompletedArray_atom } from "../recoil/todo-atom"
 
 
 export const Main = () => {
 
 
+  // INITIALIZING THE ATOMS
+  const [completedTodoArray, setcompletedTodoArray] = useRecoilState(completedArray_atom);
+
+  const [uncompletedTodoArray, setuncompletedTodoArray] = useRecoilState(uncompletedArray_atom);
+
+  const [USER, setUSER] = useRecoilState(USER_atom);
+  console.log(USER);
 
 
 
 
 
 
-  
+
+
+
+
   return (
     <div className=" px-6 pt-8">
 
 
 
+
+
       {/* WRAPPER DIV FOR MENU ICON AND TODO LOGO */}
-      <div className=" flex items-center mb-8">
+      <div className=" flex items-center mb-12">
 
 
 
@@ -37,7 +53,9 @@ export const Main = () => {
 
       </div>
 
-      {/* border-2 border-black h-[3rem] outline-none */}
+
+
+
 
 
 
@@ -52,8 +70,8 @@ export const Main = () => {
         <div className=" mr-3">
           <input type="text" className=" toDoSectionInput border-black border-2 px-2 py-2 h-[3rem] w-[100%] rounded-md font-inter" placeholder="Add Todo"></input>
 
-          
-         
+
+
         </div>
 
 
