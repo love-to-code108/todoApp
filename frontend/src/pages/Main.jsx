@@ -7,8 +7,15 @@ import "../custom.css"
 import { useRecoilState } from "recoil"
 import { todoArray_atom, todoInput_atom } from "../recoil/user-atom"
 
+// PULLING THE USER
+import { pullUSER } from "../USER/pullingTheUserObject"
+
 
 export const Main = () => {
+
+
+  // PULLING THE USER OBJECT
+  const USER = pullUSER();
 
 
   // INITIALIZING THE ATOMS

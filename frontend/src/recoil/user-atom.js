@@ -33,3 +33,8 @@ export const todoInput_atom = atom({
   default:'',
 })
 
+export const authState_atom = atom({
+  key:"authState_atom",
+  default: null,
+})
+

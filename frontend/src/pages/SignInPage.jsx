@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
 import { useRecoilState } from "recoil"
-import { userName_atom, userPassword_atom } from "../recoil/user-atom"
+import { authState_atom, userName_atom, userPassword_atom } from "../recoil/user-atom"
 import axios from "axios"
 
 // ENCRYPTING AND DECRYPTING 
@@ -14,6 +14,8 @@ import { useToast } from "@/components/ui/use-toast";
 
 // USE NAVIGATE
 import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
+import { pullUSER } from "../USER/pullingTheUserObject.js"
 
 
 
@@ -33,6 +35,7 @@ export const SignInPage = () => {
     // INITIALIZING RECOIL STATES
     const [userName, setUserName] = useRecoilState(userName_atom);
     const [password, setPassword] = useRecoilState(userPassword_atom);
+    const [authState , setAuthState] = useRecoilState(authState_atom);
 
 
 
@@ -49,12 +52,16 @@ export const SignInPage = () => {
 
     // FOR PROGRAMMABLE PAGE NAVIGATION
     const navigate = useNavigate();
+// 
 
 
 
 
-
-
+    // PULLING USER DATA
+    useEffect(() => {
+        const USER = pullUSER();   
+        setAuthState(USER);
+    },[])
 
 
 
@@ -111,6 +118,7 @@ export const SignInPage = () => {
                     // SETTING THE GLOBAL USER STATE TO THIS OBJECT
                     sessionStorage.setItem("USER", JSON.stringify(decryptedUserObject));
 
+                    setAuthState(decryptedUserObject);
 
                     localStorage.setItem("Cookie", decryptedUserObject.Cookie);
 
