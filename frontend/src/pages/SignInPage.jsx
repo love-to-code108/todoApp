@@ -273,6 +273,7 @@ export const SignInPage = () => {
             // THE MASTER DIV
             <div className=" font-inter flex flex-col justify-center items-center w-[100%] h-[100svh] bg-[#F3F3F3]">
 
+
                 {/* MASTER WRAPPER */}
                 <div className=" flex w-[80%] justify-between bg-white p-6 rounded-lg
                  2xl:justify-between xl:w-[60%] 2xl:px-14 2xl:h-[20rem] 2xl:max-w-[67rem] 2xl:min-w-[63rem]
