@@ -368,6 +368,8 @@ export const SignUpPage = () => {
                     {/* LEFT BLOCK */}
                     <div className=" ml-3 2xl:flex 2xl:flex-col 2xl:justify-center 2xl:mb-[3rem] xl:mb-[8.8rem] xl:ml-4 lg:mb-[8rem] lg:ml-[2rem] md:ml-[1.4rem]">
 
+
+
                         {/* THE SIGN UP WRITING */}
                         <div className=" mt-4">
                             <h1 className=" text-4xl font-semibold
