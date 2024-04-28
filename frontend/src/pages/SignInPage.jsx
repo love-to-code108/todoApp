@@ -266,6 +266,7 @@ export const SignInPage = () => {
 
     // GREATER THAN 640PX
     else if (screenWidth >= 768) {
+
         
         return (
             <div className=" font-inter flex flex-col justify-center items-center w-[100%] h-[100svh] bg-[#F3F3F3]">
