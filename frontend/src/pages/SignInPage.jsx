@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
 import { useRecoilState } from "recoil"
-import { USER_atom, userName_atom, userPassword_atom } from "../recoil/user-atom"
+import { authState_atom, userName_atom, userPassword_atom } from "../recoil/user-atom"
 import axios from "axios"
 
 // ENCRYPTING AND DECRYPTING 
@@ -14,6 +14,8 @@ import { useToast } from "@/components/ui/use-toast";
 
 // USE NAVIGATE
 import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
+import { pullUSER } from "../USER/pullingTheUserObject.js"
 
 
 
@@ -33,7 +35,8 @@ export const SignInPage = () => {
     // INITIALIZING RECOIL STATES
     const [userName, setUserName] = useRecoilState(userName_atom);
     const [password, setPassword] = useRecoilState(userPassword_atom);
-    const [USER, setUSER] = useRecoilState(USER_atom);
+    const [authState , setAuthState] = useRecoilState(authState_atom);
+
 
 
     // THE SECURE KEY
@@ -49,12 +52,16 @@ export const SignInPage = () => {
 
     // FOR PROGRAMMABLE PAGE NAVIGATION
     const navigate = useNavigate();
+// 
 
 
 
 
-
-
+    // PULLING USER DATA
+    useEffect(() => {
+        const USER = pullUSER();   
+        setAuthState(USER);
+    },[])
 
 
 
@@ -76,7 +83,7 @@ export const SignInPage = () => {
 
 
         // AXIOS SENDING DATA TO THE BACKEND URL
-        axios.post("http://192.168.214.216:4000/signin", finalBackendData)
+        axios.post("http://192.168.214.216:5501/signin", finalBackendData)
             .then((res) => {
 
 
@@ -109,8 +116,9 @@ export const SignInPage = () => {
 
 
                     // SETTING THE GLOBAL USER STATE TO THIS OBJECT
-                    setUSER(decryptedUserObject);
+                    sessionStorage.setItem("USER", JSON.stringify(decryptedUserObject));
 
+                    setAuthState(decryptedUserObject);
 
                     localStorage.setItem("Cookie", decryptedUserObject.Cookie);
 

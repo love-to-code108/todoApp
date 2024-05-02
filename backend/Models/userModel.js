@@ -6,7 +6,7 @@ const todoFileSchema = new mongoose.Schema({
     fileName: String,
     todos: {
         type: [{
-            todo: String,
+            value: String,
             Status: Boolean,
         }]
     }
