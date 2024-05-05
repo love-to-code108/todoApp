@@ -253,7 +253,7 @@ export const SignInPage = () => {
         )
     }
 
-    
+    >=768
     // GREATER THAN 640PX
     else if (screenWidth >= 768) {
         return (
