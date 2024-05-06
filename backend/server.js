@@ -51,8 +51,7 @@ app.use(express.json());
 */
 
 // FOR CORS
-app.use(cors({ origin: 'http://192.168.152.89:5173' }));
-
+app.use(cors({ origin: 'http://192.168.214.216:5173' }));
 
 
 
@@ -60,10 +59,6 @@ app.use(cors({ origin: 'http://192.168.152.89:5173' }));
 app.get("/", (req, res) => {
     res.send("<h1>Hello world</h1>");
 })
-
-
-
-
 
 
 
