@@ -347,21 +347,28 @@ export const SignUpPage = () => {
             <div className=" font-inter flex flex-col justify-center items-center w-[100%] h-[100svh] bg-[#F3F3F3]">
 
                 {/* MASTER WRAPPER */}
-                <div className=" flex w-[80%] justify-between bg-white p-6 rounded-lg">
+                <div className=" flex w-[80%] justify-between bg-white p-6 rounded-lg
+                 2xl:justify-between 2xl:w-[60%] 2xl:px-14 2xl:h-[22rem]">
 
 
                     {/* LEFT BLOCK */}
-                    <div className=" ml-3">
+                    <div className=" ml-3 2xl:flex 2xl:flex-col 2xl:justify-center">
+                        
                         {/* THE SIGN UP WRITING */}
                         <div className=" mt-4">
-                            <h1 className=" text-4xl font-semibold">Sign Up</h1>
+                            <h1 className=" text-4xl font-semibold
+                             2xl:text-6xl">Sign Up</h1>
                         </div>
 
+
+
                         {/* ALREADY HAVE AN ACCOUNT JUST SIGN IN */}
-                        <div>
-                            <p className=" text-[10px]">Already have an account just <Link to="/signin" className=" 
-                            text-[10px] font-bold ">Sign in</Link></p>
+                        <div className=" 2xl:mt-3 2xl:mb-[8.5rem]">
+                            <p className=" text-[10px] 2xl:text-[14px]">Already have an account just <Link to="/signin" className=" 
+                            text-[10px] font-bold 2xl:text-[14px]">Sign in</Link></p>
                         </div>
+
+
                     </div>
 
 
@@ -374,12 +381,13 @@ export const SignUpPage = () => {
 
 
                     {/* RIGHT BLOCK */}
-                    <div className="my-4">
+                    <div className="my-4 2xl:flex 2xl:flex-col 2xl:justify-center">
 
 
                         {/* USERNAME INPUT */}
                         <div className=" mb-2">
-                            <Input className=" rounded-none h-[2rem]" onChange={(e) => {
+                            <Input className=" rounded-none h-[2rem] 
+                             2xl:h-[3rem] 2xl:w-[24rem] 2xl:rounded-sm" onChange={(e) => {
                                 setUserName(e.target.value);
                                 // console.log(e.target.value);
                             }} id="userName" type="text" placeholder="UserName" />
@@ -390,7 +398,8 @@ export const SignUpPage = () => {
 
                         {/* PASSWORD INPUT */}
                         <div className=" mb-2">
-                            <Input className=" rounded-none h-[2rem]" onChange={(e) => {
+                            <Input className=" rounded-none h-[2rem] 
+                             2xl:h-[3rem] 2xl:w-[24rem] 2xl:rounded-sm" onChange={(e) => {
                                 setPassword(e.target.value);
                                 // console.log(e.target.value);
                             }}
@@ -408,7 +417,8 @@ export const SignUpPage = () => {
                                     setEmail(e.target.value);
                                     // console.log(e.target.value);
                                 }}
-                                type="email" placeholder="Email" className=" color-grey h-[2rem] rounded-none " />
+                                type="email" placeholder="Email" className=" color-grey h-[2rem] rounded-none  
+                                 2xl:h-[3rem] 2xl:w-[24rem] 2xl:rounded-sm" />
 
                         </div>
 
@@ -423,8 +433,8 @@ export const SignUpPage = () => {
 
                 </div>
                 {/* TODO LOGO */}
-                <div className=" relative bottom-8">
-                    <img src={todoLogo} alt="" />
+                <div className=" relative bottom-8 2xl:bottom-[3.5rem]">
+                    <img className=" 2xl:h-[2rem]" src={todoLogo} alt="" />
                 </div>
 
             </div>
