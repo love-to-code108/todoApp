@@ -189,7 +189,7 @@ export const SignInPage = () => {
     .##.......##.....##..#######..##....##....##....########.##....##.########.
     */
     // THE FRONTEND
-    if (screenWidth < 640) {
+    if (screenWidth < 768) {
 
 
         return (
@@ -198,7 +198,7 @@ export const SignInPage = () => {
 
 
                 {/* THE WRAPPER */}
-                <div className=" font-inter w-[80%]">
+                <div className=" font-inter w-[80%] max-w-[25rem]">
 
 
 
@@ -263,30 +263,35 @@ export const SignInPage = () => {
        .##..............#######........##....#####..
        */
     // GREATER THAN 640PX
-    else if (screenWidth >= 640) {
+    else if (screenWidth >= 768) {
         return (
             <div className=" font-inter flex flex-col justify-center items-center w-[100%] h-[100svh] bg-[#F3F3F3]">
 
                 {/* MASTER WRAPPER */}
                 <div className=" flex w-[80%] justify-between bg-white p-6 rounded-lg
-                 2xl:justify-between 2xl:w-[60%] 2xl:px-14 2xl:h-[20rem]">
+                 2xl:justify-between xl:w-[60%] 2xl:px-14 2xl:h-[20rem] 2xl:max-w-[67rem] 2xl:min-w-[63rem]
+                  xl:h-[17rem] xl:items-center xl:px-8 xl:min-w-[55rem] 
+                  lg:w-[60%] lg:h-[14rem] lg:min-w-[48rem] lg:items-center
+                  md:w-[60%] md:min-w-[40rem]">
 
 
                     {/* LEFT BLOCK */}
-                    <div className=" ml-3 2xl:flex 2xl:flex-col 2xl:justify-center 2xl:mb-8">
+                    <div className=" ml-3 2xl:flex 2xl:flex-col 2xl:justify-center 2xl:mb-8 xl:mb-[6rem] xl:ml-4 lg:mb-[5.5rem] lg:ml-[1rem]">
 
                         {/* THE SIGN UP WRITING */}
                         <div className=" mt-4">
                             <h1 className=" text-4xl font-semibold
-                             2xl:text-6xl">Sign In</h1>
+                             2xl:text-6xl
+                              xl:text-5xl
+                              lg:text-[2.6rem]">Sign In</h1>
                         </div>
 
 
 
                         {/* ALREADY HAVE AN ACCOUNT JUST SIGN IN */}
-                        <div className=" 2xl:mt-3 2xl:mb-[6.5rem]">
-                            <p className=" text-[10px] 2xl:text-[14px]">Already have an account just <Link to="/signup" className=" 
-                            text-[10px] font-bold 2xl:text-[14px]">Sign Up</Link></p>
+                        <div className=" 2xl:mt-3 2xl:mb-[6.5rem] xl:mt-[9px] lg:mt-[8px]">
+                            <p className=" text-[10px] 2xl:text-[14px] xl:text-[12px]">Already have an account just <Link to="/signup" className=" 
+                            text-[10px] font-bold 2xl:text-[14px] xl:text-[12px]">Sign Up</Link></p>
                         </div>
 
 
@@ -307,8 +312,9 @@ export const SignInPage = () => {
 
                         {/* USERNAME INPUT */}
                         <div className=" mb-2">
-                            <Input className=" rounded-none h-[2rem] 
-                             2xl:h-[3rem] 2xl:w-[24rem] 2xl:rounded-sm" onChange={(e) => {
+                            <Input className="h-[2rem] 
+                             2xl:h-[3rem] 2xl:w-[24rem] rounded-sm xl:w-[20rem] xl:h-[3rem]
+                              lg:h-[2.5rem] lg:w-[18rem]" onChange={(e) => {
                                     setUserName(e.target.value);
                                     // console.log(e.target.value);
                                 }} id="userName" type="text" placeholder="UserName" />
@@ -318,9 +324,10 @@ export const SignInPage = () => {
 
 
                         {/* PASSWORD INPUT */}
-                        <div className=" mb-2">
-                            <Input className=" rounded-none h-[2rem] 
-                             2xl:h-[3rem] 2xl:w-[24rem] 2xl:rounded-sm" onChange={(e) => {
+                        <div className=" mb-2 2xl:mb-4 xl:mb-4">
+                            <Input className="h-[2rem] 
+                             2xl:h-[3rem] 2xl:w-[24rem] rounded-sm xl:w-[20rem] xl:h-[3rem]
+                              lg:h-[2.5rem] lg:w-[18rem] lg:mb-4" onChange={(e) => {
                                     setPassword(e.target.value);
                                     // console.log(e.target.value);
                                 }}
@@ -340,8 +347,8 @@ export const SignInPage = () => {
 
                 </div>
                 {/* TODO LOGO */}
-                <div className=" relative bottom-8 2xl:bottom-[3.5rem]">
-                    <img className=" 2xl:h-[2rem]" src={todoLogo} alt="" />
+                <div className=" relative bottom-8 2xl:bottom-[3.5rem] xl:bottom-[3rem] lg:bottom-[2.1rem]">
+                    <img className=" 2xl:h-[2rem] xl:h-[1.5rem]" src={todoLogo} alt="" />
                 </div>
 
             </div>
