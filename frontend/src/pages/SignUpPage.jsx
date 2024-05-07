@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { userEmail_atom, userName_atom, userPassword_atom } from "../recoil/user-atom.js";
+import { userEmail_atom, userName_atom, userPassword_atom, screenWidth_atom } from "../recoil/user-atom.js";
 
 // LOADING ENCRYPTION DECRYPTION FUNCTION 
 import { encryptObject } from "../security/encryption.js";
-import { decryptObject } from "../security/decryption.js";
+// import { decryptObject } from "../security/decryption.js";
 
 // CHADCN UI TOAST
 import { useToast } from "@/components/ui/use-toast";
@@ -18,7 +18,11 @@ import validator from "email-validator";
 
 // REACT ROUTER DOM
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
+
+// IMG
+import todoLogo from "../../public/SVG/toDoLogo.svg"
 
 
 
@@ -52,6 +56,37 @@ export const SignUpPage = () => {
     const [userName, setUserName] = useRecoilState(userName_atom);
     const [email, setEmail] = useRecoilState(userEmail_atom);
     const [password, setPassword] = useRecoilState(userPassword_atom);
+    const [screenWidth, setScreenWidth] = useRecoilState(screenWidth_atom);
+
+
+    // INIT USEREF HOOK
+    // const windowRef = useRef(null)
+
+
+
+
+    // FINDING THE SCREEN WIDTH OF THE WEBSITE
+    useEffect(() => {
+
+        // RUNS WHEN WE RESIZE THE WINDOW
+        const fireOnWindowResize = () => {
+            setScreenWidth(window.innerWidth);
+        };
+
+        // ADDING EVENT LISTNER TO WINDOW OBJECT
+        window.addEventListener('resize', fireOnWindowResize);
+
+
+        // CLEANUP FUNCTION
+        return () => {
+            window.removeEventListener('resize', fireOnWindowResize);
+        };
+
+
+    }, []);
+
+
+
 
 
 
@@ -71,6 +106,17 @@ export const SignUpPage = () => {
 
 
 
+
+
+    /*
+    ....###....##.....##.####..#######...######.
+    ...##.##....##...##...##..##.....##.##....##
+    ..##...##....##.##....##..##.....##.##......
+    .##.....##....###.....##..##.....##..######.
+    .#########...##.##....##..##.....##.......##
+    .##.....##..##...##...##..##.....##.##....##
+    .##.....##.##.....##.####..#######...######.
+    */
     // AXIOS SENDING DATA TO BACKEND
     const sendingData = async () => {
         // console.log("Request Send");
@@ -122,6 +168,15 @@ export const SignUpPage = () => {
 
 
 
+        /*
+        .##.....##.########..##......
+        .##.....##.##.....##.##......
+        .##.....##.##.....##.##......
+        .##.....##.########..##......
+        .##.....##.##...##...##......
+        .##.....##.##....##..##......
+        ..#######..##.....##.########
+        */
 
         axios.post("http://192.168.214.216:5501/signup", encryptedDataObject)
             .then((res) => {
@@ -178,80 +233,221 @@ export const SignUpPage = () => {
 
 
 
-
+    /*
+    .########.########...#######..##....##.########.########.##....##.########.
+    .##.......##.....##.##.....##.###...##....##....##.......###...##.##.....##
+    .##.......##.....##.##.....##.####..##....##....##.......####..##.##.....##
+    .######...########..##.....##.##.##.##....##....######...##.##.##.##.....##
+    .##.......##...##...##.....##.##..####....##....##.......##..####.##.....##
+    .##.......##....##..##.....##.##...###....##....##.......##...###.##.....##
+    .##.......##.....##..#######..##....##....##....########.##....##.########.
+    */
     // THE FRONTEND
-    return (
-        <div className=" w-[100%] h-[100svh] flex justify-center items-center">
+
+    if (screenWidth < 640) {
+        return (
+            <div className=" w-[100%] h-[100svh] flex justify-center items-center">
 
 
 
-            {/* THE WRAPPER */}
-            <div className=" font-inter w-[80%]">
-
-
-
-
-                {/* SIGN UP HEADING */}
-                <div className=" mb-6 ml-2">
-                    <h1 className=" font-inter text-5xl font-semibold">Sign Up</h1>
-                </div>
+                {/* THE WRAPPER */}
+                <div className=" font-inter w-[80%]">
 
 
 
 
-                {/* USERNAME INPUT */}
-                <div className="  mb-2">
-                    <Input onChange={(e) => {
-                        setUserName(e.target.value);
-                        // console.log(e.target.value);
-                    }} id="userName" type="text" placeholder="UserName" />
-                </div>
+                    {/* SIGN UP HEADING */}
+                    <div className=" mb-6 ml-2">
+                        <h1 className=" font-inter text-5xl font-semibold">Sign Up</h1>
+                    </div>
 
 
 
 
-                {/* PASSWORD INPUT */}
-                <div className=" mb-2">
-                    <Input onChange={(e) => {
-                        setPassword(e.target.value);
-                        // console.log(e.target.value);
-                    }}
-                        type="password" placeholder="Password" />
 
-                </div>
-
+                    {/* USERNAME INPUT */}
+                    <div className="  mb-2">
+                        <Input onChange={(e) => {
+                            setUserName(e.target.value);
+                            // console.log(e.target.value);
+                        }} id="userName" type="text" placeholder="UserName" />
+                    </div>
 
 
 
-                {/* EMAIL INPUT */}
-                <div className=" mb-4">
-                    <Input
-                        onChange={(e) => {
-                            setEmail(e.target.value);
+
+                    {/* PASSWORD INPUT */}
+                    <div className=" mb-2">
+                        <Input onChange={(e) => {
+                            setPassword(e.target.value);
                             // console.log(e.target.value);
                         }}
-                        type="email" placeholder="Email" className=" color-grey" />
+                            type="password" placeholder="Password" />
+
+                    </div>
+
+
+
+
+                    {/* EMAIL INPUT */}
+                    <div className=" mb-4">
+                        <Input
+                            onChange={(e) => {
+                                setEmail(e.target.value);
+                                // console.log(e.target.value);
+                            }}
+                            type="email" placeholder="Email" className=" color-grey" />
+
+                    </div>
+
+
+                    {/* SUBMIT BUTTON */}
+                    <div className=" w-[100%] flex justify-end">
+                        <Button onClick={sendingData}>Sign Up</Button>
+                    </div>
+
+
+
+                    {/* IF YOU ALREADY HAVE AN ACCOUNT SIGN IN  */}
+                    <div className=" relative bottom-[2rem] left-1 w-[11rem]">
+                        <p className=" color-grey text-[12px]">If you already have an account <Link className=" text-black font-semibold relative bottom-[2px] right-[1px]" to="/signin">Sign In</Link></p>
+                    </div>
 
                 </div>
 
 
-                {/* SUBMIT BUTTON */}
-                <div className=" w-[100%] flex justify-end">
-                    <Button onClick={sendingData}>Sign Up</Button>
+                {/* <div className=" hidden">
+                        {screenWidth}
+                </div> */}
+
+
+            </div>
+        )
+
+
+
+
+
+
+
+
+        
+        /*
+        .##..............#######..##..........#####..
+        ..##............##.....##.##....##...##...##.
+        ...##..#####....##........##....##..##.....##
+        ....##..........########..##....##..##.....##
+        ...##..#####....##.....##.#########.##.....##
+        ..##............##.....##.......##...##...##.
+        .##..............#######........##....#####..
+        */
+    } else if (screenWidth >= 640) {
+
+        return (
+            <div className=" font-inter flex flex-col justify-center items-center w-[100%] h-[100svh] bg-[#F3F3F3]">
+
+                {/* MASTER WRAPPER */}
+                <div className=" flex w-[80%] justify-between bg-white p-6 rounded-lg
+                 2xl:justify-between 2xl:w-[60%] 2xl:px-14 2xl:h-[22rem]">
+
+
+                    {/* LEFT BLOCK */}
+                    <div className=" ml-3 2xl:flex 2xl:flex-col 2xl:justify-center">
+                        
+                        {/* THE SIGN UP WRITING */}
+                        <div className=" mt-4">
+                            <h1 className=" text-4xl font-semibold
+                             2xl:text-6xl">Sign Up</h1>
+                        </div>
+
+
+
+                        {/* ALREADY HAVE AN ACCOUNT JUST SIGN IN */}
+                        <div className=" 2xl:mt-3 2xl:mb-[8.5rem]">
+                            <p className=" text-[10px] 2xl:text-[14px]">Already have an account just <Link to="/signin" className=" 
+                            text-[10px] font-bold 2xl:text-[14px]">Sign in</Link></p>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                    {/* RIGHT BLOCK */}
+                    <div className="my-4 2xl:flex 2xl:flex-col 2xl:justify-center">
+
+
+                        {/* USERNAME INPUT */}
+                        <div className=" mb-2">
+                            <Input className=" rounded-none h-[2rem] 
+                             2xl:h-[3rem] 2xl:w-[24rem] 2xl:rounded-sm" onChange={(e) => {
+                                setUserName(e.target.value);
+                                // console.log(e.target.value);
+                            }} id="userName" type="text" placeholder="UserName" />
+                        </div>
+
+
+
+
+                        {/* PASSWORD INPUT */}
+                        <div className=" mb-2">
+                            <Input className=" rounded-none h-[2rem] 
+                             2xl:h-[3rem] 2xl:w-[24rem] 2xl:rounded-sm" onChange={(e) => {
+                                setPassword(e.target.value);
+                                // console.log(e.target.value);
+                            }}
+                                type="password" placeholder="Password" />
+
+                        </div>
+
+
+
+
+                        {/* EMAIL INPUT */}
+                        <div className=" mb-4">
+                            <Input
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                    // console.log(e.target.value);
+                                }}
+                                type="email" placeholder="Email" className=" color-grey h-[2rem] rounded-none  
+                                 2xl:h-[3rem] 2xl:w-[24rem] 2xl:rounded-sm" />
+
+                        </div>
+
+
+                        {/* SUBMIT BUTTON */}
+                        <div className=" h-[2rem] w-[100%] flex justify-end">
+                            <Button onClick={sendingData}>Sign Up</Button>
+                        </div>
+
+
+                    </div>
+
                 </div>
-
-
-
-                {/* IF YOU ALREADY HAVE AN ACCOUNT SIGN IN  */}
-                <div className=" relative bottom-[2rem] left-1 w-[11rem]">
-                    <p className=" color-grey text-[12px]">If you already have an account <Link className=" text-black font-semibold relative bottom-[2px] right-[1px]" to="/signin">Sign In</Link></p>
+                {/* TODO LOGO */}
+                <div className=" relative bottom-8 2xl:bottom-[3.5rem]">
+                    <img className=" 2xl:h-[2rem]" src={todoLogo} alt="" />
                 </div>
 
             </div>
+        );
+    }
 
 
-        </div>
-    )
+
+
+
+
+
+
 }
 
 

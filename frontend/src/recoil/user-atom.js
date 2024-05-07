@@ -38,3 +38,7 @@ export const authState_atom = atom({
   default: null,
 })
 
+export const screenWidth_atom = atom({
+  key:"screenWidth_atom",
+  default: window.innerWidth,
+})
