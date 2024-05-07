@@ -352,28 +352,37 @@ export const SignUpPage = () => {
 
 
         return (
+
+            // THE MASTER DIV
             <div className=" font-inter flex flex-col justify-center items-center w-[100%] h-[100svh] bg-[#F3F3F3]">
+
 
                 {/* MASTER WRAPPER */}
                 <div className=" flex w-[80%] justify-between bg-white p-6 rounded-lg
-                 2xl:justify-between 2xl:w-[60%] 2xl:px-14 2xl:h-[22rem]">
+                 2xl:justify-between xl:w-[60%] 2xl:px-14 2xl:h-[20rem] 2xl:max-w-[67rem] 2xl:min-w-[63rem]
+                  xl:h-[19rem] xl:items-center xl:px-8 xl:min-w-[55rem] 
+                  lg:w-[60%] lg:h-[17rem] lg:min-w-[48rem] lg:items-center
+                  md:w-[60%] md:min-w-[40rem]">
 
 
                     {/* LEFT BLOCK */}
-                    <div className=" ml-3 2xl:flex 2xl:flex-col 2xl:justify-center">
+                    <div className=" ml-3 2xl:flex 2xl:flex-col 2xl:justify-center 2xl:mb-[3rem] xl:mb-[8.8rem] xl:ml-4 lg:mb-[8rem] lg:ml-[2rem] md:ml-[1.4rem]">
 
                         {/* THE SIGN UP WRITING */}
                         <div className=" mt-4">
                             <h1 className=" text-4xl font-semibold
-                             2xl:text-6xl">Sign Up</h1>
+                             2xl:text-6xl
+                              xl:text-5xl
+                              lg:text-[2.6rem]
+                              ">Sign Up</h1>
                         </div>
 
 
 
                         {/* ALREADY HAVE AN ACCOUNT JUST SIGN IN */}
-                        <div className=" 2xl:mt-3 2xl:mb-[8.5rem]">
-                            <p className=" text-[10px] 2xl:text-[14px]">Already have an account just <Link to="/signin" className=" 
-                            text-[10px] font-bold 2xl:text-[14px]">Sign in</Link></p>
+                        <div className=" 2xl:mt-3 2xl:mb-[6.5rem] xl:mt-[9px] lg:mt-[8px]">
+                            <p className=" text-[10px] 2xl:text-[14px] xl:text-[12px]">Already have an account just <Link to="/signin" className=" 
+                            text-[10px] font-bold 2xl:text-[14px] xl:text-[12px]">Sign In</Link></p>
                         </div>
 
 
@@ -389,13 +398,14 @@ export const SignUpPage = () => {
 
 
                     {/* RIGHT BLOCK */}
-                    <div className="my-4 2xl:flex 2xl:flex-col 2xl:justify-center">
+                    <div className="my-4 2xl:flex 2xl:flex-col 2xl:justify-center 2xl:mb-8">
 
 
                         {/* USERNAME INPUT */}
                         <div className=" mb-2">
-                            <Input className=" rounded-none h-[2rem] 
-                             2xl:h-[3rem] 2xl:w-[24rem] 2xl:rounded-sm" onChange={(e) => {
+                            <Input className="h-[2rem] 
+                             2xl:h-[3rem] 2xl:w-[24rem] rounded-sm xl:w-[20rem] xl:h-[3rem]
+                              lg:h-[2.5rem] lg:w-[18rem] md:h-[2.5rem]" onChange={(e) => {
                                     setUserName(e.target.value);
                                     // console.log(e.target.value);
                                 }} id="userName" type="text" placeholder="UserName" />
@@ -404,10 +414,27 @@ export const SignUpPage = () => {
 
 
 
+                        {/* EMAIL INPUT */}
+                    <div className=" mb-2">
+                        <Input
+                            onChange={(e) => {
+                                setEmail(e.target.value);
+                                // console.log(e.target.value);
+                            }}
+                            type="email" placeholder="Email" className="h-[2rem] 
+                            2xl:h-[3rem] 2xl:w-[24rem] rounded-sm xl:w-[20rem] xl:h-[3rem]
+                             lg:h-[2.5rem] lg:w-[18rem] md:h-[2.5rem]" />
+
+                    </div>
+
+
+
+
                         {/* PASSWORD INPUT */}
-                        <div className=" mb-2">
-                            <Input className=" rounded-none h-[2rem] 
-                             2xl:h-[3rem] 2xl:w-[24rem] 2xl:rounded-sm" onChange={(e) => {
+                        <div className=" mb-2 2xl:mb-4 xl:mb-4">
+                            <Input className="h-[2rem] 
+                             2xl:h-[3rem] 2xl:w-[24rem] rounded-sm xl:w-[20rem] xl:h-[3rem]
+                              lg:h-[2.5rem] lg:w-[18rem] lg:mb-4 md:h-[2.5rem] md:mb-2" onChange={(e) => {
                                     setPassword(e.target.value);
                                     // console.log(e.target.value);
                                 }}
@@ -417,23 +444,9 @@ export const SignUpPage = () => {
 
 
 
-
-                        {/* EMAIL INPUT */}
-                        <div className=" mb-4">
-                            <Input
-                                onChange={(e) => {
-                                    setEmail(e.target.value);
-                                    // console.log(e.target.value);
-                                }}
-                                type="email" placeholder="Email" className=" color-grey h-[2rem] rounded-none  
-                                 2xl:h-[3rem] 2xl:w-[24rem] 2xl:rounded-sm" />
-
-                        </div>
-
-
                         {/* SUBMIT BUTTON */}
                         <div className=" h-[2rem] w-[100%] flex justify-end">
-                            <Button onClick={sendingData}>Sign Up</Button>
+                            <Button onClick={sendingData}>Sign In</Button>
                         </div>
 
 
@@ -441,8 +454,8 @@ export const SignUpPage = () => {
 
                 </div>
                 {/* TODO LOGO */}
-                <div className=" relative bottom-8 2xl:bottom-[3.5rem]">
-                    <img className=" 2xl:h-[2rem]" src={todoLogo} alt="" />
+                <div className=" relative bottom-8 2xl:bottom-[3.5rem] xl:bottom-[3rem] lg:bottom-[2.5rem] md:bottom-[2.4rem]">
+                    <img className=" 2xl:h-[2rem] xl:h-[1.5rem]" src={todoLogo} alt="" />
                 </div>
 
             </div>
