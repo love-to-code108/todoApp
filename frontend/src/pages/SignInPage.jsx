@@ -314,7 +314,7 @@ export const SignInPage = () => {
                         <div className=" mb-2">
                             <Input className="h-[2rem] 
                              2xl:h-[3rem] 2xl:w-[24rem] rounded-sm xl:w-[20rem] xl:h-[3rem]
-                              lg:h-[2.5rem] lg:w-[18rem]" onChange={(e) => {
+                              lg:h-[2.5rem] lg:w-[18rem] md:h-[2.5rem]" onChange={(e) => {
                                     setUserName(e.target.value);
                                     // console.log(e.target.value);
                                 }} id="userName" type="text" placeholder="UserName" />
@@ -327,7 +327,7 @@ export const SignInPage = () => {
                         <div className=" mb-2 2xl:mb-4 xl:mb-4">
                             <Input className="h-[2rem] 
                              2xl:h-[3rem] 2xl:w-[24rem] rounded-sm xl:w-[20rem] xl:h-[3rem]
-                              lg:h-[2.5rem] lg:w-[18rem] lg:mb-4" onChange={(e) => {
+                              lg:h-[2.5rem] lg:w-[18rem] lg:mb-4 md:h-[2.5rem] md:mb-2" onChange={(e) => {
                                     setPassword(e.target.value);
                                     // console.log(e.target.value);
                                 }}

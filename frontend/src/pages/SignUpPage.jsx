@@ -221,6 +221,16 @@ export const SignUpPage = () => {
 
 
 
+    // {/* EMAIL INPUT */ }
+    //     <div className=" mb-4">
+    //     <Input
+    //         onChange={(e) => {
+    //             setEmail(e.target.value);
+    //             // console.log(e.target.value);
+    //         }}
+    //         type="email" placeholder="Email" className=" color-grey" />
+
+    // </div>
 
 
 
@@ -244,14 +254,15 @@ export const SignUpPage = () => {
     */
     // THE FRONTEND
 
-    if (screenWidth < 640) {
+    if (screenWidth < 768) {
+
         return (
             <div className=" w-[100%] h-[100svh] flex justify-center items-center">
 
 
 
                 {/* THE WRAPPER */}
-                <div className=" font-inter w-[80%]">
+                <div className=" font-inter w-[80%] max-w-[25rem]">
 
 
 
@@ -264,28 +275,25 @@ export const SignUpPage = () => {
 
 
 
-
                     {/* USERNAME INPUT */}
                     <div className="  mb-2">
                         <Input onChange={(e) => {
                             setUserName(e.target.value);
-                            // console.log(e.target.value);
-                        }} id="userName" type="text" placeholder="UserName" />
+                        }}
+                            id="userName" type="text" placeholder="UserName" />
                     </div>
 
 
 
 
                     {/* PASSWORD INPUT */}
-                    <div className=" mb-2">
+                    <div className=" mb-4">
                         <Input onChange={(e) => {
                             setPassword(e.target.value);
-                            // console.log(e.target.value);
                         }}
                             type="password" placeholder="Password" />
 
                     </div>
-
 
 
 
@@ -301,24 +309,21 @@ export const SignUpPage = () => {
                     </div>
 
 
+
                     {/* SUBMIT BUTTON */}
                     <div className=" w-[100%] flex justify-end">
-                        <Button onClick={sendingData}>Sign Up</Button>
+                        <Button onClick={sendingData}
+                        >Sign In</Button>
                     </div>
 
 
 
-                    {/* IF YOU ALREADY HAVE AN ACCOUNT SIGN IN  */}
-                    <div className=" relative bottom-[2rem] left-1 w-[11rem]">
-                        <p className=" color-grey text-[12px]">If you already have an account <Link className=" text-black font-semibold relative bottom-[2px] right-[1px]" to="/signin">Sign In</Link></p>
+                    {/* IF YOU ALREADY HAVE AN ACCOUNT SIGN UP  */}
+                    <div className=" relative bottom-[2rem] left-1 w-[12rem]">
+                        <p className=" color-grey text-[12px]">Already have an account <Link className=" text-black font-semibold ml-[1px]" to="/signin">Sign In</Link></p>
                     </div>
 
                 </div>
-
-
-                {/* <div className=" hidden">
-                        {screenWidth}
-                </div> */}
 
 
             </div>
@@ -331,17 +336,9 @@ export const SignUpPage = () => {
 
 
 
+
         
-        /*
-        .##..............#######..##..........#####..
-        ..##............##.....##.##....##...##...##.
-        ...##..#####....##........##....##..##.....##
-        ....##..........########..##....##..##.....##
-        ...##..#####....##.....##.#########.##.....##
-        ..##............##.....##.......##...##...##.
-        .##..............#######........##....#####..
-        */
-    } else if (screenWidth >= 640) {
+    } else if (screenWidth >= 768) {
 
         return (
             <div className=" font-inter flex flex-col justify-center items-center w-[100%] h-[100svh] bg-[#F3F3F3]">
@@ -353,7 +350,7 @@ export const SignUpPage = () => {
 
                     {/* LEFT BLOCK */}
                     <div className=" ml-3 2xl:flex 2xl:flex-col 2xl:justify-center">
-                        
+
                         {/* THE SIGN UP WRITING */}
                         <div className=" mt-4">
                             <h1 className=" text-4xl font-semibold
@@ -388,9 +385,9 @@ export const SignUpPage = () => {
                         <div className=" mb-2">
                             <Input className=" rounded-none h-[2rem] 
                              2xl:h-[3rem] 2xl:w-[24rem] 2xl:rounded-sm" onChange={(e) => {
-                                setUserName(e.target.value);
-                                // console.log(e.target.value);
-                            }} id="userName" type="text" placeholder="UserName" />
+                                    setUserName(e.target.value);
+                                    // console.log(e.target.value);
+                                }} id="userName" type="text" placeholder="UserName" />
                         </div>
 
 
@@ -400,9 +397,9 @@ export const SignUpPage = () => {
                         <div className=" mb-2">
                             <Input className=" rounded-none h-[2rem] 
                              2xl:h-[3rem] 2xl:w-[24rem] 2xl:rounded-sm" onChange={(e) => {
-                                setPassword(e.target.value);
-                                // console.log(e.target.value);
-                            }}
+                                    setPassword(e.target.value);
+                                    // console.log(e.target.value);
+                                }}
                                 type="password" placeholder="Password" />
 
                         </div>
