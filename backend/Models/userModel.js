@@ -3,7 +3,10 @@ import mongoose from "mongoose";
 
 
 const todoFileSchema = new mongoose.Schema({
-    fileName: String,
+    fileName: {
+        type: String,
+        default: "File Name 1",
+    },
     todos: {
         type: [{
             value: String,
@@ -20,6 +23,18 @@ const UserSchema = new mongoose.Schema({
     Cookie: String,
     todoFiles: {
         type: [todoFileSchema],
+        default: [
+            {
+                fileName : "File 1",
+                todos: [{
+                    value: "First todo",
+                    Status: false,
+                }]
+            },
+            {
+                fileName: "File 2",
+            }
+        ]
     },
 })
 

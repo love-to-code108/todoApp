@@ -178,7 +178,7 @@ export const SignUpPage = () => {
         ..#######..##.....##.########
         */
 
-        axios.post("http://192.168.214.216:5501/signup", encryptedDataObject)
+        axios.post("http://192.168.117.154:5501/signup", encryptedDataObject)
             .then((res) => {
                 console.log(res.data);
 
@@ -313,7 +313,7 @@ export const SignUpPage = () => {
                     {/* SUBMIT BUTTON */}
                     <div className=" w-[100%] flex justify-end">
                         <Button onClick={sendingData}
-                        >Sign In</Button>
+                        >Sign Up</Button>
                     </div>
 
 
@@ -448,7 +448,7 @@ export const SignUpPage = () => {
 
                         {/* SUBMIT BUTTON */}
                         <div className=" h-[2rem] w-[100%] flex justify-end">
-                            <Button onClick={sendingData}>Sign In</Button>
+                            <Button onClick={sendingData}>Sign Up</Button>
                         </div>
 
 
