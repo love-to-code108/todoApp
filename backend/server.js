@@ -125,6 +125,8 @@ app.post("/signup", connectingToDatabase, async (req, res) => {
 
 
 
+
+
 // THE SIGN IN ROUTE
 app.post('/signin', connectingToDatabase, async (req, res) => {
 
@@ -168,13 +170,41 @@ app.post('/signin', connectingToDatabase, async (req, res) => {
         User.Cookie = randomCookie;
         User.save();
 
+        console.log(User);
+
+        // THE MODIFIED DATA OBJECT THAT WILL BE SEND TO THE FRONTEND
+        // IT SHOULD CONTAIN
+        // - COOKIE
+        // - EMAIL
+        // - USERNAME
+        // - ARRAY CONTAINING NAMES OF TODO FILES
+        // - ARRAy OF TODOFILES BUT CONTAINING ONLY THE FIRST FILE TODO
+
+        
+        const todoFileNameArray = new Array();
+
+        User.todoFiles.forEach((value , index) => {
+            todoFileNameArray.push(value.fileName);
+        })
+        
+
+
+        const userDataBeingSendToFrontend = {
+            Cookie: User.Cookie,
+            UserName: User.UserName,
+            Email: User.Email,
+            todoFileName: todoFileNameArray,
+            todoFiles: User.todoFiles[0],
+        }
+
+        console.log(userDataBeingSendToFrontend);
 
 
 
 
 
         // ENCRYPTING THE USER OBJECT BEFORE SENDING TO THE FRONTEND
-        const encryptedUserObject = encryptObject(User, process.env.SECRET_KEY)
+        const encryptedUserObject = encryptObject(userDataBeingSendToFrontend, process.env.SECRET_KEY)
 
 
         const UserObject = {
@@ -208,12 +238,12 @@ app.post('/signin', connectingToDatabase, async (req, res) => {
 
 
 // UPDATING USER DATA
-app.put("/update" ,(req,res) => {
+app.put("/update", (req, res) => {
 
-    const decryptedObject = decryptObject(req.body.value , process.env.SECRET_KEY);
+    const decryptedObject = decryptObject(req.body.value, process.env.SECRET_KEY);
 
 
-    
+
 })
 
 
