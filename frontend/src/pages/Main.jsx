@@ -24,9 +24,7 @@ export const Main = () => {
   const [todoInput, settodoInput] = useRecoilState(todoInput_atom);
 
 
-  
-  
-  
+    
   
   
   
@@ -45,13 +43,38 @@ export const Main = () => {
     
     console.log(todo);
     
-    settodoArray([...todoArray , todo]);
+    settodoArray((e) => [...e , todo]);
 
 
+    // UPDATING THE USER OBJECT BY ADDING THE NEW TODO
+    USER.todoFiles[0].todos.push()
     
-    // UPDATE USER OBJECT
-    updateUserObject("Something");
   }
+
+
+
+  
+
+
+
+/*
+.########..########.########..##.....##..######..
+.##.....##.##.......##.....##.##.....##.##....##.
+.##.....##.##.......##.....##.##.....##.##.......
+.##.....##.######...########..##.....##.##...####
+.##.....##.##.......##.....##.##.....##.##....##.
+.##.....##.##.......##.....##.##.....##.##....##.
+.########..########.########...#######...######..
+*/
+
+const printUserObject = () => {
+  console.log(USER);
+}
+
+
+
+
+
 
 
 
@@ -118,6 +141,7 @@ export const Main = () => {
           <Button onClick={addTodo} className=" text-3xl h-[3rem] w-[3rem]">+</Button>
         </div>
 
+          <Button onClick={printUserObject} className=" py-6 ml-8 text-3xl">PRINT THE USER OBJECT</Button>
 
 
       </div>

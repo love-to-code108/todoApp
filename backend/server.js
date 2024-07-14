@@ -50,8 +50,9 @@ app.use(express.json());
 ..#######..##.....##.########
 */
 
+
 // FOR CORS
-app.use(cors({ origin: 'http://192.168.117.154:5173' }));
+app.use(cors({ origin: 'http://192.168.152.89:5173' }));
 
 
 
