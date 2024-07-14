@@ -96,30 +96,24 @@ const printUserObject = () => {
   .##.......##.....##..#######..##....##....##....########.##....##.########.
   */
   return (
-    <div className=" px-6 pt-8">
+    <div id="main">
 
+    
+      {/* THE FILES MENU */}
 
+        {/* THE AVATAR LOGO */}
 
+        {/* THE USERNAME */}
+        
+        {/* THE EMAIL */}
 
+        {/* THE SEARCH BAR */}
 
- 
+        {/* THE SEARCH BUTTON */}
 
-      {/* WRAPPER DIV FOR MENU ICON AND TODO LOGO */}
-      <div className=" flex items-center mb-12">
+        {/* THE FILE NAMES LIST */}
 
-
-
-        {/* THE HAMBURGER MENU */}
-        <HamburgerMenu_Icon />
-
-
-        {/* THE TODO LOGO  */}
-        <div className=" w-[100%] flex justify-center">
-          <img className=" h-[2rem]" src={todoLogo} alt="" />
-        </div>
-
-
-      </div>
+        {/* THE THREE DOTS IN THE LIST */}
 
 
 
@@ -128,51 +122,17 @@ const printUserObject = () => {
 
 
 
-      {/* WRAPPER FOR THE INPUT SECTION AND INPUT BUTTON */}
-      <div className=" flex items-center px-4 w-[100%]">
+      {/* THE TO DO SECTION */}
 
+        {/* THE TO DO LOGO */}
 
+        {/* THE TO DO INPUT BOX */}
 
-        {/* ADD TO DO INPUT SECTION  */}
-        <div className=" mr-3">
-          <input type="text" className=" toDoSectionInput border-black border-2 px-2 py-2 h-[3rem] w-[100%] rounded-md font-inter" onChange={(e) => settodoInput(e.target.value)} placeholder="Add Todo" />
-        </div>
+        {/* THE TO DO ADD BOX */}
 
+        {/* THE COMPLETED SECTION */}
 
-        {/* ADD TO DO PLUS BUTTON */}
-        <div>
-          <Button onClick={addTodo} className=" text-3xl h-[3rem] w-[3rem]">+</Button>
-        </div>
-
-          <Button onClick={printUserObject} className=" py-6 ml-8 text-3xl">PRINT THE USER OBJECT</Button>
-
-
-      </div>
-
-
-
-
-
-
-
-      {/* NOT COMPLETED SECTION  */}
-      <div>
-        {
-          todoArray.map((v, i) => {
-            return <h1 className=" text-xl" key={i}>{v.value}</h1>;
-          })
-        }
-
-      </div>
-
-
-
-      {/* COMPLETED SECTION  */}
-      <div>
-
-      </div>
-
-
+        {/* THE INCOMPLETED SECTION */}
 
 
     </div>
