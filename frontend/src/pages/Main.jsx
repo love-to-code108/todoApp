@@ -11,6 +11,8 @@ import { todoArray_atom, todoInput_atom } from "../recoil/user-atom"
 import { pullUSER } from "../USER/pullingTheUserObject"
 import { updateUserObject } from "../axios/useUpdateUserObject"
 
+// COMPONENTS
+
 
 export const Main = () => {
 
@@ -100,6 +102,8 @@ const printUserObject = () => {
 
 
 
+ 
+
       {/* WRAPPER DIV FOR MENU ICON AND TODO LOGO */}
       <div className=" flex items-center mb-12">
 
@@ -116,7 +120,6 @@ const printUserObject = () => {
 
 
       </div>
-
 
 
 
