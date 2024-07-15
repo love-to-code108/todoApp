@@ -6,7 +6,7 @@ import { SignUpPage } from "./pages/SignUpPage"
 // IMPORTING USER HERE
 import { useRecoilState } from "recoil"
 import { authState_atom } from "./recoil/user-atom"
-import { pullUSER } from "./USER/pullingTheUserObject"
+import { pullUSER } from "./localStorage/pullingTheUserObject"
 
 
 // CSS

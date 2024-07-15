@@ -6,59 +6,73 @@
   color: #575757;
 }
 
-.loader {
-  width: 60px;
-  aspect-ratio: 1;
+
+
+/* MAIN */
+
+#main-MainPage {
+  width: 100vw;
+  height: 100vh;
+
+
+}
+
+.wrapper1-MainPage {
+  background-color: #D4D4D4;
+  width: 22rem;
+  height: 100vh;
+
   display: flex;
-  color: #000;
-  border: 4px solid;
-  box-sizing: border-box;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle 5px, currentColor 95%, #0000),
-    linear-gradient(currentColor 50%, #0000 0) 50%/4px 60% no-repeat;
-  animation: l1 2s infinite linear;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+
+  padding-top: 1rem;
+  /* padding-left: 4rem; */
+
+  position: relative;
+
 }
 
-.loader:before {
-  content: "";
-  flex: 1;
-  background: linear-gradient(currentColor 50%, #0000 0) 50%/4px 80% no-repeat;
-  animation: inherit;
+.searchBar-mainPage {
+  display: flex;
+  margin-bottom: 3rem;
 }
 
-@keyframes l1 {
-  100% {
-    transform: rotate(1turn)
-  }
+.searchBar-mainPage input:focus {
+  outline: 2px solid #424242;
+  outline-offset: 0;
+
 }
 
-
-/* HTML: <div class="loader"></div> */
-.loader2 {
-  width: 100px;
-  height: 10px;
-  background:
-    linear-gradient(#000 0 0) 0/0% no-repeat #ddd;
-  animation: l2 2s infinite linear;
+.searchBar-mainPage button img {
+  background-color: white;
+  /* position: relative; */
+  /* top: 3.5px; */
+  height: 2rem;
+  padding: 4px;
+  /* pointer-events: none; */
 }
 
-@keyframes l2 {
-  100% {
-    background-size: 100%
-  }
+.searchBar-mainPage button:focus {
+  outline: 2px solid #424242;
+  outline-offset: 0;
 }
 
-
-
-/* HAMBURGER MENU */
-.zIndex-10 {
-  z-index: +10;
+.searchBar-mainPage button img:hover {
+  outline: 2px solid #424242;
+  outline-offset: 0;
 }
 
-.toDoSectionInput {
-  outline: none;
+/* NEW FILE BUTTON */
+.addNewFileButton{
+  bottom: 2rem;
+  right: 2rem;
 }
 
-
-/* CHECKBOX */
+/* FILE NAME COMPONENT */
+.fileNamesComponent:hover{
+  background-color: white;
+  cursor: pointer;
+  scale: 1.1; 
+}

@@ -1,4 +1,4 @@
-import { HamburgerMenu_Icon } from "../GlobalComponents/HamburgerMenu_Icon"
+import { HamburgerMenu_Icon } from "../myComponents/HamburgerMenu_Icon"
 import todoLogo from "../../public/SVG/toDoLogo.svg"
 import { Button } from "@/components/ui/button"
 import "../custom.css"
@@ -8,8 +8,30 @@ import { useRecoilState } from "recoil"
 import { todoArray_atom, todoInput_atom } from "../recoil/user-atom"
 
 // PULLING THE USER
-import { pullUSER } from "../USER/pullingTheUserObject"
+import { pullUSER } from "../localStorage/pullingTheUserObject"
 import { updateUserObject } from "../axios/useUpdateUserObject"
+
+// COMPONENTS
+
+
+// ASSETS
+import defaultProfilPic from "../assets/png/profile-user.png"
+import seachIcon_svg from "../assets/svg/search-icon.svg"
+import { FileNames } from "../myComponents/fileNames"
+import addFilesBlack from "../assets/png/add-file.png"
+import addFilesWhite from "../assets/png/add-file-white.png"
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 export const Main = () => {
@@ -24,52 +46,56 @@ export const Main = () => {
   const [todoInput, settodoInput] = useRecoilState(todoInput_atom);
 
 
-    
-  
-  
-  
+
+  // 
+
+
+
+
   // ADDING TO DO TO THE TODO ARRAY
   const addTodo = () => {
-    
+
     console.log(todoInput);
     console.log(todoArray);
-    
-    
+
+
     // THE TODO OBJECT
     const todo = {
       value: todoInput,
       state: false,
     }
-    
+
     console.log(todo);
-    
-    settodoArray((e) => [...e , todo]);
+
+    settodoArray((e) => [...e, todo]);
 
 
     // UPDATING THE USER OBJECT BY ADDING THE NEW TODO
     USER.todoFiles[0].todos.push()
-    
+
   }
 
 
 
-  
 
 
 
-/*
-.########..########.########..##.....##..######..
-.##.....##.##.......##.....##.##.....##.##....##.
-.##.....##.##.......##.....##.##.....##.##.......
-.##.....##.######...########..##.....##.##...####
-.##.....##.##.......##.....##.##.....##.##....##.
-.##.....##.##.......##.....##.##.....##.##....##.
-.########..########.########...#######...######..
-*/
 
-const printUserObject = () => {
-  console.log(USER);
-}
+  /*
+  .########..########.########..##.....##..######..
+  .##.....##.##.......##.....##.##.....##.##....##.
+  .##.....##.##.......##.....##.##.....##.##.......
+  .##.....##.######...########..##.....##.##...####
+  .##.....##.##.......##.....##.##.....##.##....##.
+  .##.....##.##.......##.....##.##.....##.##....##.
+  .########..########.########...#######...######..
+  */
+
+  const printUserObject = () => {
+    console.log(USER);
+  }
+
+  let arrayOfFiles = ['file 1', 'file 2', 'file 3' , 'file 4' , 'file 5'];
 
 
 
@@ -94,56 +120,77 @@ const printUserObject = () => {
   .##.......##.....##..#######..##....##....##....########.##....##.########.
   */
   return (
-    <div className=" px-6 pt-8">
+    <div id="main-MainPage">
+
+      <div className="wrapper1-MainPage">
 
 
 
 
-
-      {/* WRAPPER DIV FOR MENU ICON AND TODO LOGO */}
-      <div className=" flex items-center mb-12">
-
-
-
-        {/* THE HAMBURGER MENU */}
-        <HamburgerMenu_Icon />
+        {/* THE USERNAME THE EMAIL AND THE LOGO   THE ACCOUNT SECTION */}
+        <div className=" py-4 flex justify-start
+         2xl:h-[7rem] 2xl:mb-4">
 
 
-        {/* THE TODO LOGO  */}
-        <div className=" w-[100%] flex justify-center">
-          <img className=" h-[2rem]" src={todoLogo} alt="" />
+          {/* THE AVATAR LOGO */}
+          <div className="">
+            <img className=" 2xl:w-[4.5rem] 2xl:h-[4.5rem] bg-white rounded-full" src={defaultProfilPic} alt="" />
+          </div>
+
+
+
+          <div className=" flex flex-col text-[#000000] 
+          2xl:mt-3 2xl:text-sm 2xl:ml-4 ">
+
+            {/* THE EMAIL */}
+            <p>love.to.code108@gmail.com</p>
+            {/* THE USERNAME */}
+            <p>love-to-code108</p>
+
+          </div>
+
+
         </div>
 
 
-      </div>
 
 
 
 
 
 
+        {/* THE SEARCH BAR AND THE BUTTON */}
+        <div className="searchBar-mainPage">
 
+          {/* THE SEARCH BAR */}
+          <input type="text" className=" text-xl font-inter px-1 
+              2xl:w-[14rem] 2xl:mr-4 2xl:h-[2rem]"/>
 
+          {/* THE SEARCH BUTTON  */}
+          <button className="" onClick={printUserObject}>
+            <img src={seachIcon_svg} alt="" />
+            </button>
 
-      {/* WRAPPER FOR THE INPUT SECTION AND INPUT BUTTON */}
-      <div className=" flex items-center px-4 w-[100%]">
-
-
-
-        {/* ADD TO DO INPUT SECTION  */}
-        <div className=" mr-3">
-          <input type="text" className=" toDoSectionInput border-black border-2 px-2 py-2 h-[3rem] w-[100%] rounded-md font-inter" onChange={(e) => settodoInput(e.target.value)} placeholder="Add Todo" />
         </div>
 
 
-        {/* ADD TO DO PLUS BUTTON */}
-        <div>
-          <Button onClick={addTodo} className=" text-3xl h-[3rem] w-[3rem]">+</Button>
+
+        {/* LIST OF FILES */}
+        <div className="w-[100%] flex flex-col justify-center items-center">
+          {
+            arrayOfFiles.map( (value,key) => (
+              <FileNames key={key} value={value}/>
+            ))
+          }
         </div>
 
-          <Button onClick={printUserObject} className=" py-6 ml-8 text-3xl">PRINT THE USER OBJECT</Button>
 
 
+
+        {/* ADD NEW FILE */}
+        <div className="addNewFileButton absolute bg-black p-3 rounded-lg">
+          <img src={addFilesWhite} className=" w-[1.4rem] h-[1.4rem]" alt="" />
+        </div>
       </div>
 
 
@@ -152,25 +199,24 @@ const printUserObject = () => {
 
 
 
-      {/* NOT COMPLETED SECTION  */}
-      <div>
-        {
-          todoArray.map((v, i) => {
-            return <h1 className=" text-xl" key={i}>{v.value}</h1>;
-          })
-        }
 
+
+
+
+
+      <div className="">
+        {/* THE TO DO SECTION */}
+
+        {/* THE TO DO LOGO */}
+
+        {/* THE TO DO INPUT BOX */}
+
+        {/* THE TO DO ADD BOX */}
+
+        {/* THE COMPLETED SECTION */}
+
+        {/* THE INCOMPLETED SECTION */}
       </div>
-
-
-
-      {/* COMPLETED SECTION  */}
-      <div>
-
-      </div>
-
-
-
 
     </div>
   )
