@@ -18,5 +18,46 @@
 }
 
 .wrapper1-MainPage{
+  background-color: #D4D4D4;
+  width: 22rem;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+
+  padding: 1rem;
+  /* padding-left: 4rem; */
+
+}
+
+.searchBar-mainPage{
+  display: flex;
+  width: ;
+}
+
+.searchBar-mainPage input:focus{
+  outline: 2px solid #424242;
+  outline-offset: 0;
   
+}
+
+.searchBar-mainPage button img{
+  background-color: white;
+  /* position: relative; */
+  /* top: 3.5px; */
+  height: 2rem;
+  padding: 4px;
+  /* pointer-events: none; */
+}
+
+.searchBar-mainPage button:focus{
+  outline: 2px solid #424242;
+  outline-offset: 0;
+}
+
+.searchBar-mainPage button img:hover{
+  outline: 2px solid #424242;
+  outline-offset: 0;
 }
