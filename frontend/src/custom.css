@@ -69,3 +69,10 @@
   bottom: 2rem;
   right: 2rem;
 }
+
+/* FILE NAME COMPONENT */
+.fileNamesComponent:hover{
+  background-color: white;
+  cursor: pointer;
+  scale: 1.1; 
+}

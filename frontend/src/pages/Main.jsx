@@ -18,7 +18,8 @@ import { updateUserObject } from "../axios/useUpdateUserObject"
 import defaultProfilPic from "../assets/png/profile-user.png"
 import seachIcon_svg from "../assets/svg/search-icon.svg"
 import { FileNames } from "../myComponents/fileNames"
-import addFiles from "../assets/png/add-file.png"
+import addFilesBlack from "../assets/png/add-file.png"
+import addFilesWhite from "../assets/png/add-file-white.png"
 
 
 
@@ -187,8 +188,8 @@ export const Main = () => {
 
 
         {/* ADD NEW FILE */}
-        <div className="addNewFileButton absolute bg-white p-3 rounded-full">
-          <img src={addFiles} className=" w-[2.4rem] h-[2.4rem]" alt="" />
+        <div className="addNewFileButton absolute bg-black p-3 rounded-lg">
+          <img src={addFilesWhite} className=" w-[1.4rem] h-[1.4rem]" alt="" />
         </div>
       </div>
 
