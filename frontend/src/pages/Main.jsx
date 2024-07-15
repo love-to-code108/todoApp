@@ -17,6 +17,8 @@ import { updateUserObject } from "../axios/useUpdateUserObject"
 // ASSETS
 import defaultProfilPic from "../assets/png/profile-user.png"
 import seachIcon_svg from "../assets/svg/search-icon.svg"
+import { FileNames } from "../myComponents/fileNames"
+import addFiles from "../assets/png/add-file.png"
 
 
 
@@ -43,6 +45,8 @@ export const Main = () => {
   const [todoInput, settodoInput] = useRecoilState(todoInput_atom);
 
 
+
+  // 
 
 
 
@@ -89,6 +93,8 @@ export const Main = () => {
   const printUserObject = () => {
     console.log(USER);
   }
+
+  let arrayOfFiles = ['file 1', 'file 2', 'file 3' , 'file 4' , 'file 5'];
 
 
 
@@ -167,7 +173,23 @@ export const Main = () => {
         </div>
 
 
+
         {/* LIST OF FILES */}
+        <div className="w-[100%] flex flex-col justify-center items-center">
+          {
+            arrayOfFiles.map( (value,key) => (
+              <FileNames key={key} value={value}/>
+            ))
+          }
+        </div>
+
+
+
+
+        {/* ADD NEW FILE */}
+        <div className="addNewFileButton absolute bg-white p-3 rounded-full">
+          <img src={addFiles} className=" w-[2.4rem] h-[2.4rem]" alt="" />
+        </div>
       </div>
 
 

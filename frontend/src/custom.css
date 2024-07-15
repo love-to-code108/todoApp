@@ -10,14 +10,14 @@
 
 /* MAIN */
 
-#main-MainPage{
+#main-MainPage {
   width: 100vw;
   height: 100vh;
 
 
 }
 
-.wrapper1-MainPage{
+.wrapper1-MainPage {
   background-color: #D4D4D4;
   width: 22rem;
   height: 100vh;
@@ -27,23 +27,25 @@
   align-items: center;
   /* justify-content: center; */
 
-  padding: 1rem;
+  padding-top: 1rem;
   /* padding-left: 4rem; */
 
+  position: relative;
+
 }
 
-.searchBar-mainPage{
+.searchBar-mainPage {
   display: flex;
-  width: ;
+  margin-bottom: 3rem;
 }
 
-.searchBar-mainPage input:focus{
+.searchBar-mainPage input:focus {
   outline: 2px solid #424242;
   outline-offset: 0;
-  
+
 }
 
-.searchBar-mainPage button img{
+.searchBar-mainPage button img {
   background-color: white;
   /* position: relative; */
   /* top: 3.5px; */
@@ -52,12 +54,18 @@
   /* pointer-events: none; */
 }
 
-.searchBar-mainPage button:focus{
+.searchBar-mainPage button:focus {
   outline: 2px solid #424242;
   outline-offset: 0;
 }
 
-.searchBar-mainPage button img:hover{
+.searchBar-mainPage button img:hover {
   outline: 2px solid #424242;
   outline-offset: 0;
+}
+
+/* NEW FILE BUTTON */
+.addNewFileButton{
+  bottom: 2rem;
+  right: 2rem;
 }
