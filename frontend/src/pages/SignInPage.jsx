@@ -15,7 +15,7 @@ import { useToast } from "@/components/ui/use-toast";
 // USE NAVIGATE
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
-import { pullUSER } from "../USER/pullingTheUserObject.js"
+import { pullUSER } from "../localStorage/pullingTheUserObject.js"
 
 // IMG
 import todoLogo from "../../public/SVG/toDoLogo.svg"

@@ -1,4 +1,4 @@
-import { HamburgerMenu_Icon } from "../GlobalComponents/HamburgerMenu_Icon"
+import { HamburgerMenu_Icon } from "../myComponents/HamburgerMenu_Icon"
 import todoLogo from "../../public/SVG/toDoLogo.svg"
 import { Button } from "@/components/ui/button"
 import "../custom.css"
@@ -8,7 +8,7 @@ import { useRecoilState } from "recoil"
 import { todoArray_atom, todoInput_atom } from "../recoil/user-atom"
 
 // PULLING THE USER
-import { pullUSER } from "../USER/pullingTheUserObject"
+import { pullUSER } from "../localStorage/pullingTheUserObject"
 import { updateUserObject } from "../axios/useUpdateUserObject"
 
 // COMPONENTS
@@ -26,52 +26,52 @@ export const Main = () => {
   const [todoInput, settodoInput] = useRecoilState(todoInput_atom);
 
 
-    
-  
-  
-  
+
+
+
+
   // ADDING TO DO TO THE TODO ARRAY
   const addTodo = () => {
-    
+
     console.log(todoInput);
     console.log(todoArray);
-    
-    
+
+
     // THE TODO OBJECT
     const todo = {
       value: todoInput,
       state: false,
     }
-    
+
     console.log(todo);
-    
-    settodoArray((e) => [...e , todo]);
+
+    settodoArray((e) => [...e, todo]);
 
 
     // UPDATING THE USER OBJECT BY ADDING THE NEW TODO
     USER.todoFiles[0].todos.push()
-    
+
   }
 
 
 
-  
 
 
 
-/*
-.########..########.########..##.....##..######..
-.##.....##.##.......##.....##.##.....##.##....##.
-.##.....##.##.......##.....##.##.....##.##.......
-.##.....##.######...########..##.....##.##...####
-.##.....##.##.......##.....##.##.....##.##....##.
-.##.....##.##.......##.....##.##.....##.##....##.
-.########..########.########...#######...######..
-*/
 
-const printUserObject = () => {
-  console.log(USER);
-}
+  /*
+  .########..########.########..##.....##..######..
+  .##.....##.##.......##.....##.##.....##.##....##.
+  .##.....##.##.......##.....##.##.....##.##.......
+  .##.....##.######...########..##.....##.##...####
+  .##.....##.##.......##.....##.##.....##.##....##.
+  .##.....##.##.......##.....##.##.....##.##....##.
+  .########..########.########...#######...######..
+  */
+
+  const printUserObject = () => {
+    console.log(USER);
+  }
 
 
 
@@ -96,15 +96,15 @@ const printUserObject = () => {
   .##.......##.....##..#######..##....##....##....########.##....##.########.
   */
   return (
-    <div id="main">
+    <div id="main-MainPage">
 
-    
-      {/* THE FILES MENU */}
+      <div className="wrapper1-MainPage">
+        {/* THE FILES MENU */}
 
         {/* THE AVATAR LOGO */}
 
         {/* THE USERNAME */}
-        
+
         {/* THE EMAIL */}
 
         {/* THE SEARCH BAR */}
@@ -114,27 +114,27 @@ const printUserObject = () => {
         {/* THE FILE NAMES LIST */}
 
         {/* THE THREE DOTS IN THE LIST */}
+        </div>
 
 
 
 
 
 
+        <div className="">
+          {/* THE TO DO SECTION */}
 
+          {/* THE TO DO LOGO */}
 
-      {/* THE TO DO SECTION */}
+          {/* THE TO DO INPUT BOX */}
 
-        {/* THE TO DO LOGO */}
+          {/* THE TO DO ADD BOX */}
 
-        {/* THE TO DO INPUT BOX */}
+          {/* THE COMPLETED SECTION */}
 
-        {/* THE TO DO ADD BOX */}
+          {/* THE INCOMPLETED SECTION */}
+        </div>
 
-        {/* THE COMPLETED SECTION */}
-
-        {/* THE INCOMPLETED SECTION */}
-
-
-    </div>
-  )
+      </div>
+      )
 }
